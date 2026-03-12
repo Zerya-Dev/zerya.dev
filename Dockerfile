@@ -1,8 +1,19 @@
-FROM nginx:alpine
+FROM imbios/bun-node:1.3.10-current-alpine AS base
+WORKDIR /app
 
-COPY index.html /usr/share/nginx/html/index.html
-COPY logo.svg /usr/share/nginx/html/logo.svg
+FROM base AS prerelease
+COPY package.json bun.lock ./
 
-EXPOSE 80
+RUN bun install --frozen-lockfile --ignore-scripts
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY . .
+
+RUN bun run build
+
+FROM base AS release
+COPY --from=prerelease /app/node_modules node_modules
+COPY --from=prerelease /app/.output .output
+COPY --from=prerelease /app/package.json .
+
+EXPOSE 3000
+CMD ["node", ".output/server/index.mjs"]

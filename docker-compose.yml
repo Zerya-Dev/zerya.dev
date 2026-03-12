@@ -1,6 +1,9 @@
 services:
   web:
-    build: .
+    container_name: zerya-web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
     ports:
-      - "8080:80"
-    restart: unless-stopped
+      - '3000:3000'
