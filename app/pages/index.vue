@@ -1,4 +1,5 @@
 <script setup>
+defineOgImage('OgImage', { title: 'Zerya', description: 'Make your ideas shine' })
 useHead({
   script: [{ src: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', defer: true }],
 })

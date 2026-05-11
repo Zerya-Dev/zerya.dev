@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxtjs/seo',
     '@nuxt/content',
+    'nuxt-og-image',
   ],
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
