@@ -31,9 +31,3 @@ ij_javascript_enforce_trailing_comma = whenmultiline
 
 [*.md]
 trim_trailing_whitespace = false
-
-[openapi/api/openapi.json]
-indent_style = unset
-indent_size = unset
-insert_final_newline = unset
-trim_trailing_whitespace = unset
