@@ -1,4 +1,14 @@
-# Zerya.dev website
+# Zerya websites
+
+This Bun workspace contains two Nuxt applications and a shared Nuxt layer:
+
+```text
+apps/
+├── company/      # zerya.dev
+└── foundation/   # foundation.zerya.dev
+packages/
+└── shared/       # shared Nuxt layer
+```
 
 ## Setup
 
@@ -10,20 +20,32 @@ bun install
 
 ## Development Server
 
-Start the development server on `http://localhost:3000`:
+Start both websites on `http://localhost:3000` and `http://localhost:3001`:
 
 ```bash
-bun dev
+bun run dev
+```
+
+Start either website independently:
+
+```bash
+bun run company:dev
+bun run foundation:dev
 ```
 
 ## Production
 
-Build the application for production:
+Build both applications for production:
 
 ```bash
 bun run build
 ```
 
-Locally preview production build:
+Build one application independently:
+
+```bash
+bun run company:build
+bun run foundation:build
+```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

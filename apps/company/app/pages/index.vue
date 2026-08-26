@@ -1,6 +1,11 @@
 <script setup>
+import logoUrl from '#layers/shared/app/assets/logo.svg'
+
 useHead({
   script: [{ src: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', defer: true }],
+})
+useSeoMeta({
+  title: 'Home',
 })
 
 if (import.meta.client) {
@@ -230,7 +235,7 @@ if (import.meta.client) {
     <div class="content">
       <div class="logo-container">
         <img
-          src="~/assets/logo.svg"
+          :src="logoUrl"
           alt="Zerya Logo"
         >
       </div>

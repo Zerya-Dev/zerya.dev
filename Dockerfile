@@ -1,19 +1,27 @@
-FROM imbios/bun-node:1.3.10-current-alpine AS base
-WORKDIR /app
+ARG APP=company
 
-FROM base AS prerelease
-COPY package.json bun.lock ./
+FROM oven/bun:1.3.10-alpine AS build
+WORKDIR /app
+ARG APP
+
+COPY package.json bun.lock bunfig.toml ./
+COPY apps/company/package.json ./apps/company/
+COPY apps/foundation/package.json ./apps/foundation/
+COPY packages/shared/package.json ./packages/shared/
 
 RUN bun install --frozen-lockfile --ignore-scripts
 
 COPY . .
 
-RUN bun run build
+RUN bun run --filter "@zerya/${APP}" build
 
-FROM base AS release
-COPY --from=prerelease /app/node_modules node_modules
-COPY --from=prerelease /app/.output .output
-COPY --from=prerelease /app/package.json .
+FROM node:24-alpine AS runtime
+WORKDIR /app
+ARG APP
+
+ENV NODE_ENV=production
+ENV PORT=3000
+COPY --from=build /app/apps/${APP}/.output ./.output
 
 EXPOSE 3000
 CMD ["node", ".output/server/index.mjs"]
