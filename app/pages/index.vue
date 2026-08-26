@@ -2,6 +2,9 @@
 useHead({
   script: [{ src: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', defer: true }],
 })
+useSeoMeta({
+  title: 'Home',
+})
 
 if (import.meta.client) {
   const container = document.getElementById('canvas-container')

@@ -15,6 +15,9 @@ useHead({
     lang: 'en',
   },
 })
+useSeoMeta({
+  titleTemplate: 'Zerya Dev | %s',
+})
 </script>
 
 <template>
