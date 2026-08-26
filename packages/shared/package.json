@@ -1,0 +1,8 @@
+{
+  "name": "@zerya/shared",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "nuxt": "^4.4.2"
+  }
+}

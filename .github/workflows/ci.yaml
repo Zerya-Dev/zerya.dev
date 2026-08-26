@@ -19,5 +19,5 @@ jobs:
       - name: Run lint
         run: bun lint
 
-      - name: Build frontend
+      - name: Build websites
         run: bun run build
