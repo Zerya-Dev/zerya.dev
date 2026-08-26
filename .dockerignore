@@ -1,8 +1,8 @@
 # Nuxt
-./node_modules/
-./tests
-./.output
-./.nuxt
+node_modules/
+tests/
+.output/
+.nuxt/
 
 # Ignore environment variables
 */.env

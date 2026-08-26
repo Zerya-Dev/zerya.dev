@@ -1,9 +1,22 @@
 services:
-  web:
-    container_name: zerya-web
+  company:
+    container_name: zerya-company
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        APP: company
     restart: on-failure
     ports:
       - '3000:3000'
+
+  foundation:
+    container_name: zerya-foundation
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP: foundation
+    restart: on-failure
+    ports:
+      - '3001:3000'
