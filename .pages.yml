@@ -1,0 +1,800 @@
+media:
+  input: apps/foundation/public/img/content
+  output: /img/content
+
+components:
+  link:
+    type: object
+    fields:
+      - name: label
+        label: Etykieta
+        type: string
+        required: true
+      - name: to
+        label: Adres
+        type: string
+        required: true
+      - name: external
+        label: Link zewnętrzny
+        type: boolean
+  seo:
+    type: object
+    label: SEO
+    fields:
+      - name: title
+        label: Tytuł
+        type: string
+        required: true
+      - name: description
+        label: Opis
+        type: text
+        required: true
+      - name: ogTitle
+        label: Tytuł Open Graph
+        type: string
+      - name: ogDescription
+        label: Opis Open Graph
+        type: text
+  hero:
+    type: object
+    label: Nagłówek
+    fields:
+      - name: label
+        label: Etykieta
+        type: string
+        required: true
+      - name: title
+        label: Tytuł
+        type: string
+        required: true
+      - name: description
+        label: Opis
+        type: text
+        required: true
+      - name: dark
+        label: Ciemny wariant
+        type: boolean
+  metric:
+    type: object
+    fields:
+      - name: value
+        label: Wartość
+        type: string
+        required: true
+      - name: label
+        label: Opis
+        type: string
+        required: true
+  card:
+    type: object
+    fields:
+      - name: title
+        label: Tytuł
+        type: string
+        required: true
+      - name: description
+        label: Opis
+        type: text
+        required: true
+      - name: icon
+        label: Ikona
+        type: string
+        required: true
+  cta:
+    type: object
+    fields:
+      - name: title
+        label: Tytuł
+        type: string
+        required: true
+      - name: description
+        label: Opis
+        type: text
+        required: true
+      - name: button
+        label: Przycisk
+        component: link
+
+content:
+  - name: foundation-content
+    label: Fundacja - treści
+    type: group
+    items:
+      - name: news
+        label: Aktualności
+        type: collection
+        path: apps/foundation/content/news
+        format: yaml-frontmatter
+        filename: '{fields.slug}.md'
+        view:
+          primary: title
+          fields: [date, category, featured]
+          sort: date
+          order: desc
+        fields:
+          - name: slug
+            label: Slug
+            type: string
+            required: true
+          - name: title
+            label: Tytuł
+            type: string
+            required: true
+          - name: date
+            label: Data
+            type: date
+            required: true
+          - name: displayDate
+            label: Wyświetlana data
+            type: string
+            required: true
+          - name: category
+            label: Kategoria
+            type: string
+            required: true
+          - name: lead
+            label: Zajawka
+            type: text
+            required: true
+          - name: featured
+            label: Wyróżniony wpis
+            type: boolean
+          - name: body
+            label: Treść
+            type: rich-text
+            required: true
+            options:
+              format: markdown
+              path: news
+              rename: true
+      - name: projects
+        label: Projekty
+        type: collection
+        path: apps/foundation/content/projects
+        format: yaml-frontmatter
+        filename: '{fields.slug}.md'
+        view:
+          primary: name
+          fields: [year, category, featured]
+          sort: year
+          order: desc
+        fields:
+          - name: slug
+            label: Slug
+            type: string
+            required: true
+          - name: name
+            label: Nazwa
+            type: string
+            required: true
+          - name: category
+            label: Kategoria
+            type: string
+            required: true
+          - name: year
+            label: Rok
+            type: string
+            required: true
+          - name: description
+            label: Krótki opis
+            type: text
+            required: true
+          - name: summary
+            label: Podsumowanie
+            type: text
+            required: true
+          - name: result
+            label: Najważniejszy wynik
+            type: string
+            required: true
+          - name: featured
+            label: Wyróżniony projekt
+            type: boolean
+          - name: externalUrl
+            label: Strona projektu
+            type: string
+          - name: metrics
+            label: Wyniki
+            component: metric
+            list: true
+          - name: challenge
+            label: Wyzwanie
+            type: text
+            list: true
+          - name: scope
+            label: Zakres realizacji
+            type: string
+            list: true
+          - name: body
+            label: Raport z realizacji
+            type: rich-text
+            required: true
+            options:
+              format: markdown
+              path: projects
+              rename: true
+      - name: privacy-policy
+        label: Polityka prywatności
+        type: file
+        path: apps/foundation/content/pages/privacy-policy.md
+        format: yaml-frontmatter
+        fields:
+          - name: slug
+            type: string
+            hidden: true
+          - name: title
+            label: Tytuł
+            type: string
+            required: true
+          - name: description
+            label: Opis
+            type: text
+            required: true
+          - name: label
+            label: Etykieta
+            type: string
+            required: true
+          - name: notice
+            label: Komunikat
+            type: object
+            fields:
+              - name: icon
+                label: Ikona
+                type: string
+              - name: title
+                label: Tytuł
+                type: string
+              - name: description
+                label: Opis
+                type: text
+          - name: cta
+            label: Przycisk
+            component: link
+          - name: body
+            label: Treść
+            type: rich-text
+            required: true
+            options:
+              format: markdown
+
+  - name: foundation-pages
+    label: Fundacja - strony
+    type: group
+    items:
+      - name: homepage
+        label: Strona główna
+        type: file
+        path: apps/foundation/data/pages/home.yml
+        format: yaml
+        fields:
+          - name: slug
+            type: string
+            hidden: true
+          - name: seo
+            component: seo
+          - name: hero
+            label: Nagłówek
+            type: object
+            fields:
+              - name: title
+                label: Tytuł
+                type: string
+              - name: emphasis
+                label: Wyróżnienie
+                type: string
+              - name: description
+                label: Opis
+                type: text
+              - name: slides
+                label: Slajdy
+                type: object
+                list: true
+                fields:
+                  - name: alt
+                    label: Tekst alternatywny
+                    type: string
+                  - name: caption
+                    label: Podpis
+                    type: string
+                  - name: tone
+                    label: Wariant
+                    type: select
+                    options:
+                      values: [dark, green, mint, light]
+                  - name: src
+                    label: Zdjęcie
+                    type: image
+              - name: links
+                label: Przyciski
+                component: link
+                list: true
+              - name: stats
+                label: Statystyki
+                component: metric
+                list: true
+          - name: mission
+            label: Misja
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: title
+                type: string
+              - name: items
+                label: Elementy
+                type: object
+                list: true
+                fields:
+                  - name: number
+                    type: string
+                  - name: title
+                    type: string
+                  - name: description
+                    type: text
+                  - name: proof
+                    label: Wynik
+                    type: string
+                  - name: link
+                    component: link
+          - name: partners
+            label: Sekcja partnerów
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: title
+                type: string
+              - name: description
+                type: text
+          - name: team
+            label: Sekcja zespołu
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: title
+                type: string
+              - name: link
+                component: link
+          - name: contact
+            label: Sekcja kontaktowa
+            type: object
+            fields:
+              - name: title
+                type: string
+              - name: description
+                type: text
+              - name: email
+                type: string
+      - name: about
+        label: O nas
+        type: file
+        path: apps/foundation/data/pages/about.yml
+        format: yaml
+        fields:
+          - name: slug
+            type: string
+            hidden: true
+          - name: seo
+            component: seo
+          - name: hero
+            component: hero
+          - name: origin
+            label: Geneza
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: title
+                type: string
+              - name: paragraphs
+                label: Akapity
+                type: text
+                list: true
+              - name: imageLabel
+                label: Opis zdjęcia
+                type: string
+          - name: values
+            label: Wartości
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: title
+                type: string
+              - name: items
+                component: card
+                list: true
+          - name: trust
+            label: Zaufanie
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: title
+                type: string
+              - name: description
+                type: text
+          - name: teamSection
+            label: Sekcja zespołu
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: title
+                type: string
+              - name: description
+                type: text
+              - name: supportingTitle
+                type: string
+              - name: supportingDescription
+                type: text
+          - name: next
+            label: Kolejne kroki
+            type: object
+            fields:
+              - name: proofLabel
+                type: string
+              - name: proofTitle
+                type: string
+              - name: proofButton
+                component: link
+              - name: partnerLabel
+                type: string
+              - name: partnerTitle
+                type: string
+              - name: partnerDescription
+                type: text
+              - name: partnerButton
+                component: link
+      - name: news-page
+        label: Strona aktualności
+        type: file
+        path: apps/foundation/data/pages/news.yml
+        format: yaml
+        fields:
+          - name: slug
+            type: string
+            hidden: true
+          - name: seo
+            component: seo
+          - name: hero
+            component: hero
+          - name: archive
+            label: Archiwum
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: title
+                type: string
+              - name: description
+                type: text
+          - name: cta
+            component: cta
+      - name: projects-page
+        label: Strona projektów
+        type: file
+        path: apps/foundation/data/pages/projects.yml
+        format: yaml
+        fields:
+          - name: slug
+            type: string
+            hidden: true
+          - name: seo
+            component: seo
+          - name: hero
+            component: hero
+          - name: archive
+            label: Archiwum
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: title
+                type: string
+              - name: description
+                type: text
+          - name: cta
+            component: cta
+          - name: detailCta
+            label: CTA studium przypadku
+            component: cta
+      - name: contact-page
+        label: Kontakt
+        type: file
+        path: apps/foundation/data/pages/contact.yml
+        format: yaml
+        fields:
+          - name: slug
+            type: string
+            hidden: true
+          - name: seo
+            component: seo
+          - name: hero
+            component: hero
+          - name: form
+            label: Formularz
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: title
+                type: string
+              - name: description
+                type: text
+          - name: contactPaths
+            label: Ścieżki kontaktu
+            type: object
+            list: true
+            fields:
+              - name: title
+                type: string
+              - name: description
+                type: text
+              - name: person
+                type: string
+              - name: email
+                type: string
+              - name: icon
+                type: string
+      - name: support-page
+        label: Wsparcie
+        type: file
+        path: apps/foundation/data/pages/support.yml
+        format: yaml
+        fields:
+          - name: slug
+            type: string
+            hidden: true
+          - name: seo
+            component: seo
+          - name: hero
+            component: hero
+          - name: supportPaths
+            label: Sposoby wsparcia
+            component: card
+            list: true
+          - name: longTerm
+            label: Długotrwałe wsparcie
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: title
+                type: string
+              - name: description
+                type: text
+              - name: button
+                component: link
+              - name: optionsTitle
+                type: string
+              - name: options
+                type: string
+                list: true
+          - name: donation
+            label: Darowizna
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: title
+                type: string
+              - name: description
+                type: text
+              - name: frequencyTitle
+                type: string
+              - name: onceLabel
+                type: string
+              - name: recurringLabel
+                type: string
+              - name: notice
+                type: text
+              - name: button
+                component: link
+          - name: supportAreas
+            label: Obszary wsparcia
+            component: card
+            list: true
+      - name: statute-page
+        label: Statut
+        type: file
+        path: apps/foundation/data/pages/statute.yml
+        format: yaml
+        fields:
+          - name: slug
+            type: string
+            hidden: true
+          - name: seo
+            component: seo
+          - name: hero
+            component: hero
+          - name: document
+            label: Dokument
+            type: object
+            fields:
+              - name: icon
+                type: string
+              - name: noticeTitle
+                type: string
+              - name: noticeDescription
+                type: text
+              - name: versionTitle
+                type: string
+              - name: versionDescription
+                type: text
+              - name: fileTitle
+                type: string
+              - name: fileDescription
+                type: text
+
+  - name: foundation-data
+    label: Fundacja - dane
+    type: group
+    items:
+      - name: navigation
+        label: Nawigacja
+        type: file
+        path: apps/foundation/data/site/navigation.yml
+        format: yaml
+        fields:
+          - name: items
+            label: Pozycje
+            component: link
+            list: true
+      - name: settings
+        label: Ustawienia
+        type: file
+        path: apps/foundation/data/site/settings.yml
+        format: yaml
+        fields:
+          - name: featuredLink
+            label: Wyróżniony link
+            component: link
+          - name: socialLinks
+            label: Media społecznościowe
+            type: object
+            list: true
+            fields:
+              - name: label
+                type: string
+              - name: href
+                type: string
+          - name: foundationDetails
+            label: Dane fundacji
+            type: object
+            list: true
+            fields:
+              - name: label
+                type: string
+              - name: value
+                type: string
+          - name: footer
+            label: Stopka
+            type: object
+            fields:
+              - name: description
+                type: text
+              - name: organization
+                type: text
+              - name: legalLinks
+                component: link
+                list: true
+      - name: partners
+        label: Partnerzy
+        type: file
+        path: apps/foundation/data/site/partners.yml
+        format: yaml
+        fields:
+          - name: featured
+            label: Główni partnerzy
+            type: object
+            list: true
+            fields:
+              - name: name
+                type: string
+              - name: tagline
+                type: string
+              - name: url
+                type: string
+              - name: logo
+                type: image
+              - name: logoAlt
+                label: Tekst alternatywny
+                type: string
+          - name: supporting
+            label: Pozostali partnerzy
+            type: object
+            list: true
+            fields:
+              - name: name
+                type: string
+              - name: url
+                type: string
+              - name: logo
+                type: image
+              - name: logoAlt
+                label: Tekst alternatywny
+                type: string
+      - name: team
+        label: Zespół
+        type: file
+        path: apps/foundation/data/site/team.yml
+        format: yaml
+        fields:
+          - name: homepage
+            label: Strona główna
+            type: object
+            list: true
+            fields:
+              - name: name
+                type: string
+              - name: role
+                type: string
+          - name: members
+            label: Członkowie
+            type: object
+            list: true
+            fields:
+              - name: name
+                type: string
+              - name: role
+                type: string
+              - name: description
+                type: text
+          - name: supporting
+            label: Zespół wspierający
+            type: object
+            list: true
+            fields:
+              - name: name
+                type: string
+              - name: role
+                type: string
+      - name: metrics
+        label: Statystyki
+        type: file
+        path: apps/foundation/data/site/metrics.yml
+        format: yaml
+        fields:
+          - name: organization
+            label: Fundacja
+            component: metric
+            list: true
+      - name: gallery
+        label: Galeria
+        type: file
+        path: apps/foundation/data/site/gallery.yml
+        format: yaml
+        fields:
+          - name: hero
+            component: hero
+          - name: filters
+            label: Filtry
+            type: string
+            list: true
+          - name: items
+            label: Zdjęcia
+            type: object
+            list: true
+            fields:
+              - name: id
+                type: number
+              - name: label
+                type: string
+              - name: project
+                type: string
+              - name: year
+                type: string
+              - name: date
+                type: string
+              - name: place
+                type: string
+              - name: tone
+                type: select
+                options:
+                  values: [dark, green, mint, light]
+              - name: featured
+                type: boolean
+              - name: image
+                type: image
