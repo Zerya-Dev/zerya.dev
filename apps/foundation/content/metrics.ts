@@ -1,0 +1,7 @@
+import type { Metric } from './types'
+
+export const ORGANIZATION_METRICS: Metric[] = [
+  { value: '300+', label: 'uczestników wszystkich działań' },
+  { value: '30+', label: 'wolontariuszy zaangażowanych w działania' },
+  { value: '10+', label: 'partnerstw' },
+]
