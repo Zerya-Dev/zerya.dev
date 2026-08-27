@@ -1,0 +1,53 @@
+featured:
+  - name: CyberFolks
+    tagline: Sponsor główny Hack4Krak
+    url: https://cyberfolks.pl
+    logo: /img/content/partners/cyberfolks.webp
+    logoAlt: Logo CyberFolks
+  - name: UKEN
+    tagline: Partner strategiczny
+    url: https://www.uken.krakow.pl/
+    logo: /img/content/partners/uken.webp
+    logoAlt: Logo UKEN
+  - name: Ambasada Społeczności
+    tagline: Partner organizacyjny
+    url: https://ambasadaspolecznosci.org.pl/
+    logo: /img/content/partners/ambasada-spolecznosci.webp
+    logoAlt: Logo Ambasada Społeczności
+supporting:
+  - name: Arkanet
+    url: https://arkanet.pl
+    logo: /img/content/partners/arkanet.webp
+    logoAlt: Logo Arkanet
+  - name: Netwrix
+    url: https://netwrix.com/
+    logo: /img/content/partners/netwrix.webp
+    logoAlt: Logo Netwrix
+  - name: CERT Polska
+    url: https://cert.pl/
+    logo: /img/content/partners/cert.webp
+    logoAlt: Logo CERT Polska
+  - name: Krakowski Park Technologiczny
+    url: https://www.kpt.krakow.pl/
+    logo: /img/content/partners/kpt.webp
+    logoAlt: Logo Krakowski Park Technologiczny
+  - name: 31 Liceum Ogólnokształcące w Krakowie
+    url: https://lo31.krakow.pl/
+    logo: /img/content/partners/31lo.webp
+    logoAlt: Logo 31 LO
+  - name: Teach for Poland
+    url: https://teachforpoland.org/
+    logo: /img/content/partners/teachforpoland.webp
+    logoAlt: Logo Teach for Poland
+  - name: FABLAB Małopolska
+    url: https://www.fablabmalopolska.pl/
+    logo: /img/content/partners/fablab.webp
+    logoAlt: Logo FABLAB Małopolska
+  - name: INFOSEC
+    url: https://infosec.info.pl
+    logo: /img/content/partners/infosec.webp
+    logoAlt: Logo INFOSEC
+  - name: CyberDot
+    url: https://cyberdot.pl/
+    logo: /img/content/partners/cyberdot.webp
+    logoAlt: Logo CyberDot

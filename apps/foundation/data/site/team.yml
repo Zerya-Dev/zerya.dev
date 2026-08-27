@@ -1,0 +1,36 @@
+homepage:
+  - name: Imię Nazwisko
+    role: koordynacja
+  - name: Imię Nazwisko
+    role: partnerstwa
+  - name: Imię Nazwisko
+    role: technologia
+members:
+  - name: Imię i nazwisko
+    role: Koordynacja
+    description: Odpowiedzialność za przebieg projektów i współpracę zespołu.
+  - name: Imię i nazwisko
+    role: Operacje
+    description: Zaplanowanie programu wydarzeń i doświadczenia uczestników
+  - name: Imię i nazwisko
+    role: Partnerstwa
+    description: Relacje ze sponsorami, instytucjami i patronami.
+  - name: Imię i nazwisko
+    role: Promocja
+    description: Docieranie z naszym projektem do młodych ludzi z różnych miast i krajów.
+  - name: Imię i nazwisko
+    role: Technologia
+    description: Zaplecze techniczne i narzędzia.
+supporting:
+  - name: Imię i nazwisko
+    role: Wolontariat
+  - name: Imię i nazwisko
+    role: Komunikacja
+  - name: Imię i nazwisko
+    role: Opieka nad uczestnikami
+  - name: Imię i nazwisko
+    role: Wsparcie techniczne
+  - name: Imię i nazwisko
+    role: Dokumentacja
+  - name: Imię i nazwisko
+    role: Produkcja wydarzeń

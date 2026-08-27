@@ -1,0 +1,17 @@
+slug: news
+seo:
+  title: Aktualności
+  description: Aktualności o projektach, partnerstwach i pracy Fundacji Zerya.
+hero:
+  label: Aktualności
+  title: Co nowego?
+  description: Najważniejsze informacje o wydarzeniach, projektach, partnerstwach i pracy zespołu.
+archive:
+  label: Archiwum
+  title: Ostatnie wpisy
+cta:
+  title: Zobacz projekty stojące za aktualnościami
+  description: Najważniejsze informacje uzupełniamy o zakres realizacji, liczby i materiały dowodowe.
+  button:
+    label: Przejdź do projektów
+    to: /projekty

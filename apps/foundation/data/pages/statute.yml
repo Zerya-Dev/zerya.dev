@@ -1,0 +1,16 @@
+slug: statute
+seo:
+  title: Statut
+  description: Statut Fundacji Zerya i informacje o aktualnej wersji dokumentu.
+hero:
+  label: Dokumenty
+  title: Statut Fundacji Zerya
+  description: Formalny dokument określający cele, zasady działania i strukturę fundacji.
+document:
+  icon: i-lucide-file-text
+  noticeTitle: Dokument do podłączenia
+  noticeDescription: Aktualna, zatwierdzona treść statutu nie została dostarczona do implementacji. W tym miejscu należy opublikować dokument źródłowy bez modyfikowania jego treści.
+  versionTitle: Wersja dokumentu
+  versionDescription: Data uchwalenia i numer wersji — do uzupełnienia.
+  fileTitle: Plik PDF
+  fileDescription: Odnośnik do podpisanego dokumentu — do uzupełnienia.

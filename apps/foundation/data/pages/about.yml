@@ -1,0 +1,50 @@
+slug: about
+seo:
+  title: O nas
+  description: Poznaj misję, doświadczenie i osoby odpowiedzialne za realizację projektów Fundacji Zerya.
+hero:
+  label: O fundacji
+  title: Kim jesteśmy
+  description: Organizujemy ambitne wydarzenia edukacyjne — od programu po bezpieczeństwo uczestników.
+origin:
+  label: Nasza geneza
+  title: Zaczęliśmy od zauważenia problemu
+  paragraphs:
+    - Fundacja Zerya powstała z inicjatywy młodych ludzi zainteresowanych różnymi tematami, od cyberbezpieczeństwa po przedsiębiorczość, którzy zauważyli brak, niską jakość lub wysoki próg wejścia inicjatyw edukacyjnych skierowanych do młodzieży.
+    - 'Doświadczenie zdobyliśmy w praktyce: planując pierwsze wydarzenia, zdobywając pierwszych sponsorów i ucząc się jak skutecznie organizować takie wydarzenia.'
+  imageLabel: Zespół Fundacji Zerya podczas realizacji wydarzenia
+values:
+  label: Nasze wartości
+  title: Nasze wartości
+  items:
+    - title: Nauka przez praktykę
+      description: Uczymy przez działanie i pracę nad realnymi projektami.
+      icon: i-lucide-wrench
+    - title: Współpraca
+      description: Budujemy społeczność młodych ludzi o wspólnych zainteresowaniach.
+      icon: i-lucide-handshake
+    - title: Bezpieczna rywalizacja
+      description: Wierzymy, że rywalizacja jest dobrym narzędziem do motywacji i rozwoju.
+      icon: i-lucide-shield-check
+trust:
+  label: Doświadczenie
+  title: Dlaczego można nam zaufać
+  description: Najważniejsze liczby przechowujemy jako dane, dzięki czemu można je łatwo aktualizować wraz z rozwojem fundacji.
+teamSection:
+  label: Zespół
+  title: Nasz zespół
+  description: Za każdym obszarem stoi konkretna osoba znająca się na temacie.
+  supportingTitle: Pozostali członkowie zespołu
+  supportingDescription: W realizację projektów angażują się także osoby wspierające konkretne obszary wydarzeń.
+next:
+  proofLabel: Zobacz dowody
+  proofTitle: Najlepszy sposób, by nas poznać, to zobaczyć nasze wydarzenia.
+  proofButton:
+    label: Przejdź do projektów
+    to: /projekty
+  partnerLabel: Dla partnerów
+  partnerTitle: Chcesz współpracować?
+  partnerDescription: Kontakt dla sponsorów, partnerów i instytucji.
+  partnerButton:
+    label: Kontakt
+    to: /kontakt

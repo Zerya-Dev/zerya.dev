@@ -1,0 +1,49 @@
+slug: support
+seo:
+  title: Wsparcie
+  description: Sposoby długotrwałego wsparcia i darowizny dla Fundacji Zerya.
+hero:
+  label: Wsparcie
+  title: Jak nas wesprzeć
+  description: Wybierz ścieżkę, która odpowiada Ci najbardziej. Każdą współpracę łączymy z konkretnym celem i przejrzystym zakresem.
+supportPaths:
+  - title: Długotrwałe wsparcie
+    description: Partnerstwo, sponsoring, wsparcie rzeczowe lub patronat.
+    icon: i-lucide-building-2
+  - title: Darowizna
+    description: Darowizna jednorazowa lub regularne wsparcie działań.
+    icon: i-lucide-heart-handshake
+longTerm:
+  label: Długotrwałe wsparcie
+  title: Współpraca z jasnym celem
+  description: Najpierw ustalamy efekt dla uczestników, następnie zakres partnerstwa, odpowiedzialności i sposób pokazania wkładu partnera.
+  button:
+    label: Porozmawiajmy
+    to: /kontakt
+  optionsTitle: Możliwe formy współpracy
+  options:
+    - partnerstwo programowe lub technologiczne
+    - sponsoring konkretnego wydarzenia
+    - wsparcie rzeczowe i udostępnienie przestrzeni
+    - patronat oraz wsparcie komunikacyjne
+donation:
+  label: Darowizna
+  title: Regularnie lub jednorazowo
+  description: Każde wsparcie pomaga rozwijać program, przygotować bezpieczne wydarzenie i zmniejszać bariery udziału.
+  frequencyTitle: Wybierz częstotliwość
+  onceLabel: Jednorazowo
+  recurringLabel: Cyklicznie
+  notice: Moduł płatności i dane do przelewu zostaną podłączone po zatwierdzeniu formalnych danych fundacji.
+  button:
+    label: Wesprzyj
+    to: /kontakt
+supportAreas:
+  - title: Program
+    description: Zadania, mentoring i materiały edukacyjne.
+    icon: i-lucide-blocks
+  - title: Logistyka
+    description: Przestrzeń, organizacja, sprzęt i bezpieczeństwo.
+    icon: i-lucide-map-pin
+  - title: Dostępność
+    description: Zmniejszanie barier udziału w wydarzeniach.
+    icon: i-lucide-accessibility

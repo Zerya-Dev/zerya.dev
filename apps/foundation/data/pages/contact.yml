@@ -1,0 +1,28 @@
+slug: contact
+seo:
+  title: Kontakt
+  description: Kontakt dla partnerów, mediów i osób zainteresowanych działaniami Fundacji Zerya.
+hero:
+  label: Kontakt
+  title: Skontaktuj sie z nami
+  description: Wybierz temat lub skorzystaj z formularza. Wiadomość skierujemy do osoby odpowiedzialnej za dany obszar.
+form:
+  label: Formularz
+  title: Opisz krótko, czego dotyczy wiadomość
+  description: Prosty formularz pomaga nam zebrać potrzebny kontekst. Nie wysyłaj w nim danych wrażliwych.
+contactPaths:
+  - title: Partnerstwa i sponsoring
+    description: Współpraca projektowa, sponsoring i wsparcie rzeczowe.
+    person: Osoba odpowiedzialna — do uzupełnienia
+    email: foundation@zerya.dev
+    icon: i-lucide-handshake
+  - title: Kontakt ogólny
+    description: Pytania o fundację, wydarzenia i udział w działaniach.
+    person: Zespół Fundacji Zerya
+    email: foundation@zerya.dev
+    icon: i-lucide-mail
+  - title: Media i patronaty
+    description: Materiały prasowe, patronaty i zapytania medialne.
+    person: Osoba odpowiedzialna — do uzupełnienia
+    email: foundation@zerya.dev
+    icon: i-lucide-megaphone

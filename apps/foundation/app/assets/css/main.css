@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@theme static {
+  --font-sans: 'Manrope', Arial, sans-serif;
+
+  --color-space: #1d0b26;
+  --color-space-2: #2d123c;
+  --color-mint: #f9e9ff;
+  --color-canvas: #fbf8fc;
+
+  --color-zerya-50: #f9e9ff;
+  --color-zerya-100: #edcef9;
+  --color-zerya-200: #d99ff0;
+  --color-zerya-300: #bf68e2;
+  --color-zerya-400: #a53bd0;
+  --color-zerya-500: #8f27c3;
+  --color-zerya-600: #711397;
+  --color-zerya-700: #5d0d7d;
+  --color-zerya-800: #4b0c64;
+  --color-zerya-900: #3e0b53;
+  --color-zerya-950: #23052f;
+}
+
+:root {
+  --ui-primary: var(--color-zerya-500);
+  --ui-secondary: var(--color-zerya-200);
+  --ui-bg: var(--color-white);
+  --ui-bg-muted: var(--color-canvas);
+  --ui-text: var(--color-space);
+  --ui-text-muted: var(--color-slate-500);
+  --ui-border: var(--color-slate-300);
+  --ui-radius: 0.125rem;
+  --ui-container: 80rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--ui-bg);
+    color: var(--ui-text);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-zerya-500);
+    outline-offset: 4px;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.rich-content :where(h1, h2, h3),
+.report-content :where(h1, h2, h3) {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.rich-content :where(h1:first-child, h2:first-child, h3:first-child),
+.report-content :where(h1:first-child, h2:first-child, h3:first-child) {
+  margin-top: 0;
+}
+
+.rich-content :where(p, ul, ol),
+.report-content :where(p, ul, ol) {
+  margin-top: 1rem;
+  line-height: 1.75;
+  color: var(--color-slate-500);
+}
+
+.rich-content :where(ul, ol),
+.report-content :where(ul, ol) {
+  padding-left: 1.5rem;
+}
+
+.rich-content ul,
+.report-content ul {
+  list-style: disc;
+}

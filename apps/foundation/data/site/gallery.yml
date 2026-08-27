@@ -1,0 +1,68 @@
+hero:
+  label: Galeria
+  title: Zdjęcia z realizacji
+  description: Fotografie są dowodem pracy zespołu, skali wydarzeń i zaangażowania uczestników oraz partnerów.
+filters:
+  - Wszystkie
+  - Hack4Krak
+  - '2026'
+  - '2025'
+items:
+  - id: 1
+    label: Uczestnicy podczas pracy zespołowej
+    project: Hack4Krak
+    year: '2026'
+    date: czerwiec 2026
+    place: Kraków
+    tone: dark
+    featured: true
+  - id: 2
+    label: Odprawa zespołu organizacyjnego
+    project: Hack4Krak
+    year: '2026'
+    date: czerwiec 2026
+    place: Kraków
+    tone: green
+  - id: 3
+    label: Mentorzy wspierający uczestników
+    project: Hack4Krak
+    year: '2026'
+    date: czerwiec 2026
+    place: Kraków
+    tone: mint
+  - id: 4
+    label: Rozpoczęcie wydarzenia
+    project: Hack4Krak
+    year: '2026'
+    date: czerwiec 2026
+    place: Kraków
+    tone: light
+  - id: 5
+    label: Praca nad zadaniami
+    project: Warsztaty CTF
+    year: '2026'
+    date: maj 2026
+    place: Kraków
+    tone: green
+  - id: 6
+    label: Spotkanie z partnerami
+    project: Partnerstwa edukacyjne
+    year: '2025'
+    date: listopad 2025
+    place: Kraków
+    tone: dark
+  - id: 7
+    label: Testowanie programu
+    project: Laboratorium zadań
+    year: '2025'
+    date: październik 2025
+    place: Kraków
+    tone: mint
+  - id: 8
+    label: Zespół po zakończeniu realizacji
+    project: Hack4Krak
+    year: '2025'
+    date: czerwiec 2025
+    place: Kraków
+    tone: light
+    featured: true

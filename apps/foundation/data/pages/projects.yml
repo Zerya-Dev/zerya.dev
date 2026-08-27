@@ -1,0 +1,23 @@
+slug: projects
+seo:
+  title: Projekty
+  description: 'Realizacje Fundacji Zerya: zakres odpowiedzialności, wyniki, partnerzy i materiały dowodowe.'
+hero:
+  label: Projekty
+  title: Nasze inicjatywy
+  description: 'Każdy projekt odpowiada na trzy pytania: co zrobiliśmy, dla kogo i z jakim efektem.'
+archive:
+  label: Pozostałe działania
+  title: Projekty i formaty edukacyjne
+cta:
+  title: Porozmawiajmy o wspólnej realizacji
+  description: Możemy połączyć cel edukacyjny, doświadczenie organizacyjne i zasoby partnera w jeden konkretny projekt.
+  button:
+    label: Kontakt
+    to: /kontakt
+detailCta:
+  title: Zobacz pozostałe realizacje
+  description: Każdy projekt pokazujemy przez zakres odpowiedzialności, wyniki i materiały dowodowe.
+  button:
+    label: Wszystkie projekty
+    to: /projekty
