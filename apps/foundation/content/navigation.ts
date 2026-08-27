@@ -1,0 +1,11 @@
+import type { Link } from './types'
+
+export const NAVIGATION_ITEMS: Link[] = [
+  { label: 'Start', to: '/' },
+  { label: 'O nas', to: '/o-nas' },
+  { label: 'Projekty', to: '/projekty' },
+  { label: 'Aktualności', to: '/aktualnosci' },
+  { label: 'Galeria', to: '/galeria' },
+  { label: 'Wsparcie', to: '/wsparcie' },
+  { label: 'Kontakt', to: '/kontakt' },
+]
