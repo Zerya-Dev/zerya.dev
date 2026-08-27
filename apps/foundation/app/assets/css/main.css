@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@theme static {
+  --font-sans: 'Manrope', Arial, sans-serif;
+
+  --color-space: #0f1720;
+  --color-space-2: #1a2430;
+  --color-mint: #e9fff8;
+  --color-canvas: #f6f8fb;
+
+  --color-zerya-50: #e9fff8;
+  --color-zerya-100: #cef9ec;
+  --color-zerya-200: #9ff0da;
+  --color-zerya-300: #68e2c5;
+  --color-zerya-400: #3bd0ad;
+  --color-zerya-500: #27c39f;
+  --color-zerya-600: #13977a;
+  --color-zerya-700: #0d7d66;
+  --color-zerya-800: #0c6454;
+  --color-zerya-900: #0b5347;
+  --color-zerya-950: #052f29;
+}
+
+:root {
+  --ui-primary: var(--color-zerya-500);
+  --ui-bg: var(--color-white);
+  --ui-bg-muted: var(--color-slate-50);
+  --ui-text: var(--color-space);
+  --ui-text-muted: var(--color-slate-500);
+  --ui-border: var(--color-slate-300);
+  --ui-radius: 0.125rem;
+  --ui-container: 80rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--ui-bg);
+    color: var(--ui-text);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-zerya-500);
+    outline-offset: 4px;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.report-content :where(h1, h2, h3) {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.report-content :where(h1:first-child, h2:first-child, h3:first-child) {
+  margin-top: 0;
+}
+
+.report-content :where(p, ul, ol) {
+  margin-top: 1rem;
+  line-height: 1.75;
+  color: var(--color-slate-500);
+}
+
+.report-content :where(ul, ol) {
+  padding-left: 1.5rem;
+}
+
+.report-content ul {
+  list-style: disc;
+}
