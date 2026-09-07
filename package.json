@@ -48,7 +48,7 @@
     "husky": "^9.1.7",
     "playwright-core": "^1.58.2",
     "typescript": "^5.9.3",
-    "vitest": "^4.1.0",
+    "vitest": "^5.0.0",
     "vitest-fail-on-console": "^0.10.1",
     "vue-tsc": "^3.2.5"
   }
