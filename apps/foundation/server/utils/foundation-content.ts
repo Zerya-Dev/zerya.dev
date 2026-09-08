@@ -1,4 +1,3 @@
-import type { Storage } from 'unstorage'
 import { createMarkdownParser } from 'comark'
 import { load } from 'js-yaml'
 
@@ -6,7 +5,7 @@ const parseMarkdown = createMarkdownParser()
 const contentCollections = new Set(['news', 'pages', 'projects'])
 const safePathPattern = /^[a-z0-9-/]+$/
 
-async function readAsset(storage: Storage, path: string) {
+async function readAsset(storage: ReturnType<typeof useStorage>, path: string) {
   const value = await storage.getItemRaw(path)
 
   if (value === null) {

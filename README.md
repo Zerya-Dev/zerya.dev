@@ -1,6 +1,6 @@
 # Zerya websites
 
-This Bun workspace contains two Nuxt applications and a shared Nuxt layer:
+This pnpm workspace contains two Nuxt applications and a shared Nuxt layer:
 
 ```text
 apps/
@@ -15,7 +15,7 @@ packages/
 Make sure to install the dependencies:
 
 ```bash
-bun install
+pnpm install
 ```
 
 ## Development Server
@@ -23,14 +23,14 @@ bun install
 Start both websites on `http://localhost:3000` and `http://localhost:3001`:
 
 ```bash
-bun run dev
+pnpm dev
 ```
 
 Start either website independently:
 
 ```bash
-bun run company:dev
-bun run foundation:dev
+pnpm company:dev
+pnpm foundation:dev
 ```
 
 ## Production
@@ -38,14 +38,14 @@ bun run foundation:dev
 Build both applications for production:
 
 ```bash
-bun run build
+pnpm build
 ```
 
 Build one application independently:
 
 ```bash
-bun run company:build
-bun run foundation:build
+pnpm company:build
+pnpm foundation:build
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
