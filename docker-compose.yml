@@ -9,6 +9,9 @@ services:
     restart: on-failure
     ports:
       - '3000:3000'
+    profiles:
+      - company
+      - all
 
   foundation:
     container_name: zerya-foundation
@@ -20,3 +23,6 @@ services:
     restart: on-failure
     ports:
       - '3001:3000'
+    profiles:
+      - foundation
+      - all
