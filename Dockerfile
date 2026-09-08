@@ -1,21 +1,22 @@
 ARG APP=company
 
-FROM oven/bun:1.3.10-alpine AS build
+FROM node:26-alpine AS build
 WORKDIR /app
 ARG APP
 
-COPY package.json bun.lock bunfig.toml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/company/package.json ./apps/company/
 COPY apps/foundation/package.json ./apps/foundation/
 COPY packages/base/package.json ./packages/base/
 
-RUN bun install --frozen-lockfile --ignore-scripts
+RUN npm install -g pnpm@12.11.2 && pnpm install --frozen-lockfile --ignore-scripts
 
 COPY . .
 
-RUN bun run --filter "@zerya/${APP}" build
+RUN pnpm --filter "@zerya/${APP}" run postinstall
+RUN pnpm --filter "@zerya/${APP}" run build
 
-FROM node:24-alpine AS runtime
+FROM node:26-alpine AS runtime
 WORKDIR /app
 ARG APP
 
