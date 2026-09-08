@@ -15,6 +15,7 @@
     "@nuxtjs/seo": "^5.3.14",
     "comark": "^0.6.2",
     "nuxt": "^4.4.2",
+    "nuxt-schema-org": "^6.3.1",
     "tailwindcss": "^4.2.1",
     "vue": "^3.5.30",
     "vue-router": "^5.0.3"
