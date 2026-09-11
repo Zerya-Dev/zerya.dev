@@ -1,4 +1,4 @@
-FROM imbios/bun-node:1.3.10-current-alpine AS base
+FROM imbios/bun-node:1.3.14-current-alpine AS base
 WORKDIR /app
 
 FROM base AS prerelease
