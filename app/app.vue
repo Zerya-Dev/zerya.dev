@@ -16,7 +16,7 @@ useHead({
   },
 })
 useSeoMeta({
-  titleTemplate: 'Zerya Dev | %s',
+  titleTemplate: 'Zerya | %s',
 })
 </script>
 

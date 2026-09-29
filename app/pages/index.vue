@@ -1,9 +1,10 @@
 <script setup>
 useHead({
   script: [{ src: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', defer: true }],
+  titleTemplate: null,
 })
 useSeoMeta({
-  title: 'Home',
+  title: 'Zerya',
 })
 
 if (import.meta.client) {
