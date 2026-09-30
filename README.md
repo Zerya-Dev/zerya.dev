@@ -1,29 +1,11 @@
-# Zerya.dev website
+# zerya.dev
 
-## Setup
-
-Make sure to install the dependencies:
+Nuxt 4 + Nuxt UI 4 + Tailwind 4. The contact form sends mail through [Resend](https://resend.com). Nuxt UI provides the UI components, icons, and locally served Geist, Geist Mono, and Outfit fonts.
 
 ```bash
+cp .env.example .env   # set NUXT_RESEND_API_KEY
 bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
 bun dev
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-bun run build
-```
-
-Locally preview production build:
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+`bun lint`, `bun run typecheck` and `bun run build` check the project. Production image: `docker build -t zerya-dev .` (needs `NUXT_RESEND_API_KEY` at runtime).

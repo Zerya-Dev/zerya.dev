@@ -19,5 +19,11 @@ jobs:
       - name: Run lint
         run: bun lint
 
+      - name: Run typecheck
+        run: bun run typecheck
+
+      - name: Run unit tests
+        run: bun run test --run
+
       - name: Build frontend
         run: bun run build

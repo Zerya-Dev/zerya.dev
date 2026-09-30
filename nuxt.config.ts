@@ -13,6 +13,20 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
 
+  ui: {
+    colorMode: false,
+    experimental: {
+      componentDetection: true,
+    },
+  },
+  runtimeConfig: {
+    resendApiKey: '',
+    contact: {
+      to: 'contact+{tag}@zerya.dev',
+      from: 'Zerya Web <formularz@zerya.dev>',
+    },
+  },
+
   content: {
     experimental: { nativeSqlite: true },
   },

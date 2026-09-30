@@ -1,8 +1,46 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
 
-@source "../../../content/**/*";
+@theme static {
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
 
-@theme {
-  --font-sans: 'Public Sans', sans-serif;
+  --color-ink: #05080a;
+  --color-paper: #f2eee3;
+  --color-mint: #3ee6a8;
+  --color-riso-yellow: #e4ec6c;
+  --color-riso-blue: #36c9ff;
+
+  /* Nuxt UI's primary palette uses the same mint as the site's accent. */
+  --color-brand-50: #edfff7;
+  --color-brand-100: #d3fce9;
+  --color-brand-200: #a9f8d3;
+  --color-brand-300: #77f1bc;
+  --color-brand-400: #3ee6a8;
+  --color-brand-500: #3ee6a8;
+  --color-brand-600: #19c88b;
+  --color-brand-700: #109c6c;
+  --color-brand-800: #117a56;
+  --color-brand-900: #115f45;
+  --color-brand-950: #063a29;
+}
+
+:root {
+  --ui-primary: var(--color-mint);
+  --ui-bg: var(--color-ink);
+  --ui-text: var(--color-paper);
+  --ui-text-highlighted: var(--color-paper);
+  --ui-border: rgb(242 238 227 / 15%);
+  --ui-radius: 0;
+}
+
+@layer base {
+  body {
+    @apply bg-ink font-sans text-paper;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    @apply font-heading;
+  }
 }
