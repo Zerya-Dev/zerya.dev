@@ -9,10 +9,12 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxtjs/seo',
     '@nuxt/content',
+    '@nuxtjs/turnstile',
   ],
+  site: { name: 'Zerya.dev' },
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
-
+  image: { providers: { none: {} } },
   ui: {
     colorMode: false,
     experimental: {

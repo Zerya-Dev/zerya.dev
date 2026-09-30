@@ -1,8 +1,11 @@
+import type { H3Event } from 'h3'
+import { z } from 'zod'
+
 const MIN_FILL_MS = 3_000
 const RATE_WINDOW_MS = 10 * 60_000
 const RATE_MAX = 5
 
-// Best-effort, per-instance limiter. Good enough to stop a single noisy client.
+// Per-instance rate limit.
 const hits = new Map<string, number[]>()
 
 function rateLimited(ip: string) {
@@ -11,6 +14,18 @@ function rateLimited(ip: string) {
   recent.push(now)
   hits.set(ip, recent)
   return recent.length > RATE_MAX
+}
+
+async function verifyTurnstile(token: string, event: H3Event) {
+  try {
+    const result = await verifyTurnstileToken(token, event)
+    if (!result.success)
+      console.warn('[contact] Turnstile rejected', result['error-codes'])
+    return result.success
+  } catch (error) {
+    console.error('[contact] Turnstile siteverify failed', error)
+    return false
+  }
 }
 
 const HTML_SPECIAL_CHARACTERS = /[&<>"']/g
@@ -25,12 +40,11 @@ export default defineEventHandler(async (event) => {
     throw createError({
       statusCode: 422,
       statusMessage: 'Invalid form data',
-      data: { fields: result.error.flatten().fieldErrors },
+      data: { fields: z.flattenError(result.error).fieldErrors },
     })
   }
   const form = result.data
 
-  // Bots: pretend it worked so they don't retry.
   if (form.website || Date.now() - form.startedAt < MIN_FILL_MS) {
     return { ok: true }
   }
@@ -40,9 +54,13 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 429, statusMessage: 'Too many requests' })
   }
 
-  const { resendApiKey, contact } = useRuntimeConfig(event)
-  if (!resendApiKey) {
+  const { resendApiKey, turnstile, contact } = useRuntimeConfig(event)
+  if (!resendApiKey || !turnstile.secretKey) {
     throw createError({ statusCode: 500, statusMessage: 'Contact form is not configured' })
+  }
+
+  if (!await verifyTurnstile(form.turnstileToken, event)) {
+    throw createError({ statusCode: 403, statusMessage: 'Captcha verification failed' })
   }
 
   const to = contact.to.replace('{tag}', form.source)

@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { pl } from '@nuxt/ui/locale'
+
 useHead({
   htmlAttrs: { lang: 'pl' },
-  title: 'Zerya.dev | Home',
-  titleTemplate: '%s',
+  title: 'Zerya.dev',
+  titleTemplate: null,
   meta: [
     { name: 'description', content: 'Zerya tworzy własne produkty cyfrowe i oprogramowanie dla firm.' },
     { name: 'theme-color', content: '#05080a' },
@@ -14,8 +16,8 @@ useHead({
 </script>
 
 <template>
-  <UApp>
-    <main class="bg-ink">
+  <UApp :locale="pl">
+    <main>
       <HeroSection />
     </main>
   </UApp>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { contactSchema } from '../../shared/utils/contact'
+import { contactFormSchema, contactSchema } from '../../shared/utils/contact'
 
 const validForm = {
   email: 'hello@example.com',
@@ -7,6 +7,7 @@ const validForm = {
   source: 'website',
   website: '',
   startedAt: 1,
+  turnstileToken: 'valid-test-token',
 }
 
 describe('contact form validation', () => {
@@ -23,7 +24,23 @@ describe('contact form validation', () => {
     { website: 'spam.example' },
     { source: '../admin' },
     { startedAt: -1 },
+    { turnstileToken: '' },
   ])('rejects invalid input: %j', (change) => {
     expect(contactSchema.safeParse({ ...validForm, ...change }).success).toBe(false)
   })
+})
+
+describe('contact form schema', () => {
+  it('validates visible fields before a captcha token is available', () => {
+    expect(contactFormSchema.parse({
+      email: validForm.email,
+      message: `  ${validForm.message}  `,
+      website: '',
+    })).toEqual({ email: validForm.email, message: validForm.message, website: '' })
+  })
+
+  it.each([{ email: 'invalid' }, { message: 'short' }, { website: 'spam.example' }])(
+    'shares server validation constraints: %j',
+    change => expect(contactFormSchema.safeParse({ ...validForm, ...change }).success).toBe(false),
+  )
 })
