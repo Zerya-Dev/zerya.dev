@@ -33,7 +33,7 @@
     "vue-router": "^5.0.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^7.7.2",
+    "@antfu/eslint-config": "^9.5.1",
     "@compodium/nuxt": "^0.1.0-beta.12",
     "@iconify-json/lucide": "^1.2.98",
     "@iconify-json/simple-icons": "^1.2.74",
