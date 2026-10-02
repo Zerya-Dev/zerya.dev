@@ -3,6 +3,10 @@
 ./tests
 ./.output
 ./.nuxt
+.git
 
 # Ignore environment variables
 */.env
+.env
+.env.*
+!.env.example

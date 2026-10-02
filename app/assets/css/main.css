@@ -1,8 +1,80 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
 
-@source "../../../content/**/*";
+@theme static {
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
 
-@theme {
-  --font-sans: 'Public Sans', sans-serif;
+  --color-ink: #05080a;
+  --color-paper: #f2eee3;
+  --color-mint: #3ee6a8;
+  --color-riso-yellow: #e4ec6c;
+  --color-riso-blue: #36c9ff;
+
+  --animate-rise: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-vanish: vanish 7s ease-in-out 1.2s infinite alternate;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+      filter: blur(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+
+  @keyframes vanish {
+    0%,
+    20% {
+      --dot: 0.5;
+    }
+    100% {
+      --dot: 0.233;
+    }
+  }
+
+  --color-brand-50: #edfff7;
+  --color-brand-100: #d3fce9;
+  --color-brand-200: #a9f8d3;
+  --color-brand-300: #77f1bc;
+  --color-brand-400: #3ee6a8;
+  --color-brand-500: #3ee6a8;
+  --color-brand-600: #19c88b;
+  --color-brand-700: #109c6c;
+  --color-brand-800: #117a56;
+  --color-brand-900: #115f45;
+  --color-brand-950: #063a29;
+}
+
+@property --dot {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0.5;
+}
+
+:root {
+  --ui-primary: var(--color-mint);
+  --ui-bg: var(--color-ink);
+  --ui-text: var(--color-paper);
+  --ui-text-muted: rgb(242 238 227 / 65%);
+  --ui-text-dimmed: rgb(242 238 227 / 35%);
+  --ui-text-inverted: var(--color-ink);
+  --ui-text-highlighted: var(--color-paper);
+  --ui-border: rgb(242 238 227 / 15%);
+  --ui-radius: 0;
+}
+
+@layer base {
+  body {
+    @apply bg-ink font-sans text-paper;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    @apply font-heading;
+  }
 }

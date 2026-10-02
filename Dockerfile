@@ -1,6 +1,5 @@
 FROM imbios/bun-node:1.3.10-current-alpine AS base
 WORKDIR /app
-
 FROM base AS prerelease
 COPY package.json bun.lock ./
 
@@ -8,6 +7,7 @@ RUN bun install --frozen-lockfile --ignore-scripts
 
 COPY . .
 
+ARG NUXT_PUBLIC_TURNSTILE_SITE_KEY
 RUN bun run build
 
 FROM base AS release
