@@ -13,6 +13,10 @@ const unavailable = ref(false)
 
 // Slowly cycle the whole aurora around the color wheel (one turn every ~36s).
 // Range starts at 1 so the shift never hits 0, which would recompile the filter.
+// Aurora curtains hang down from their center by default; rotate them so they rise from the bottom.
+// The rotation also mirrors x, so the "left" curtain sits at x = 0.78.
+const flipUp = { rotation: 180 }
+
 const hueCycle = { type: 'auto-animate', mode: 'loop', outputMin: 1, outputMax: 361, speed: 1 / 36 } as const
 </script>
 
@@ -35,9 +39,10 @@ const hueCycle = { type: 'auto-animate', mode: 'loop', outputMin: 1, outputMax: 
               color-a="#7f00ff"
               color-b="#004dff"
               color-c="#00b3ff"
-              :center="{ x: 0.22, y: 0 }"
-              :height="90"
-              :intensity="70"
+              :center="{ x: 0.78, y: 0 }"
+              :transform="flipUp"
+              :height="80"
+              :intensity="55"
               :curtain-count="3"
               :speed="3"
               :waviness="60"
@@ -49,10 +54,11 @@ const hueCycle = { type: 'auto-animate', mode: 'loop', outputMin: 1, outputMax: 
               color-a="#ff33cc"
               color-b="#1aff99"
               color-c="#7f00ff"
-              blend-mode="linearDodge"
-              :center="{ x: 0.72, y: 0 }"
-              :height="140"
-              :intensity="85"
+              blend-mode="screen"
+              :center="{ x: 0.28, y: 0 }"
+              :transform="flipUp"
+              :height="110"
+              :intensity="60"
               :curtain-count="4"
               :speed="4"
               :waviness="45"
