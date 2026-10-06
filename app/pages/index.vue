@@ -1,236 +1,79 @@
-<script setup>
+<script setup lang="ts">
+import { Aurora, FloatingParticles, HueShift, Shader } from 'shaders/vue'
+
 useHead({
-  script: [{ src: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', defer: true }],
   titleTemplate: null,
 })
 useSeoMeta({
   title: 'Zerya',
 })
 
-if (import.meta.client) {
-  const container = document.getElementById('canvas-container')
-  const scene = new THREE.Scene()
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false })
+const ready = ref(false)
+const unavailable = ref(false)
 
-  renderer.setSize(window.innerWidth, window.innerHeight)
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 3))
-  container.appendChild(renderer.domElement)
-
-  const vertexShader = `
-              varying vec2 vUv;
-              void main() {
-                  vUv = uv;
-                  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-              }
-          `
-
-  const fragmentShader = `
-              uniform float uTime;
-              uniform vec2 uResolution;
-              uniform float uDraw;
-              uniform float uKp;
-              uniform float uHueShift;
-              varying vec2 vUv;
-
-              // --- NOISE FUNCTIONS ---
-              float hash(float n) { return fract(sin(n) * 43758.5453); }
-              float noise(vec2 x) {
-                  vec2 p = floor(x);
-                  vec2 f = fract(x);
-                  f = f * f * (3.0 - 2.0 * f);
-                  float n = p.x + p.y * 57.0;
-                  return mix(mix(hash(n + 0.0), hash(n + 1.0), f.x),
-                             mix(hash(n + 57.0), hash(n + 58.0), f.x), f.y);
-              }
-
-              // --- COLOR MATH ---
-              vec3 rgb2hsl(vec3 c) {
-                  float maxc = max(c.r, max(c.g, c.b));
-                  float minc = min(c.r, min(c.g, c.b));
-                  float l = (maxc + minc) / 2.0;
-                  float s = 0.0;
-                  float h = 0.0;
-                  if (maxc > minc) {
-                      float d = maxc - minc;
-                      s = (l > 0.5) ? d / (2.0 - maxc - minc) : d / (maxc + minc);
-                      if (c.r > c.g && c.r > c.b) h = (c.g - c.b) / d + (c.g < c.b ? 6.0 : 0.0);
-                      else if (c.g > c.b) h = (c.b - c.r) / d + 2.0;
-                      else h = (c.r - c.g) / d + 4.0;
-                      h /= 6.0;
-                  }
-                  return vec3(h, s, l);
-              }
-              float hue2rgb(float p, float q, float t) {
-                  if (t < 0.0) t += 1.0;
-                  if (t > 1.0) t -= 1.0;
-                  if (t < 1.0/6.0) return p + (q - p) * 6.0 * t;
-                  if (t < 1.0/2.0) return q;
-                  if (t < 2.0/3.0) return p + (q - p) * (2.0/3.0 - t) * 6.0;
-                  return p;
-              }
-              vec3 hsl2rgb(vec3 c) {
-                  float q = c.z < 0.5 ? c.z * (1.0 + c.y) : c.z + c.y - c.z * c.y;
-                  float p = 2.0 * c.z - q;
-                  return vec3(hue2rgb(p, q, c.x + 1.0/3.0), hue2rgb(p, q, c.x), hue2rgb(p, q, c.x - 1.0/3.0));
-              }
-              vec3 hueShift(vec3 color, float shift) {
-                  vec3 hsl = rgb2hsl(color);
-                  hsl.x = fract(hsl.x + shift / 360.0);
-                  return hsl2rgb(hsl);
-              }
-
-              void main() {
-                  vec2 uv = vUv;
-                  // Correct aspect ratio so curtains look consistent on all screens
-                  uv.x *= uResolution.x / uResolution.y;
-
-                  vec3 finalColor = vec3(0.0);
-                  float t = uTime * 0.2;
-
-                  // --- LOOP: STRICTLY 2 CURTAINS ---
-                  for(float i = 0.0; i < 2.0; i++) {
-
-                      // --- 1. BALANCED ASYMMETRY CONFIG ---
-
-                      float isBig = (i == 1.0) ? 1.0 : 0.0; // Index 1 is the big one
-
-                      // Base Position:
-                      // i=0 (Small) -> -0.5 (Left)
-                      // i=1 (Big)   ->  0.2 (Right Center)
-                      float baseX = (i == 0.0) ? 0.0 : 1.4;
-
-                      // Size Multiplier:
-                      // Small = 1.0, Big = 1.5
-                      float sizeMult = (i == 0.0) ? 1.0 : 1.2;
-
-                      // Sway:
-                      // Oscillates back and forth rather than infinite drift
-                      // Added phase offset (+ i) so they don't move in perfect sync
-                      float sway = sin(t * 0.4 + i * 2.0) * 0.15;
-
-                      float centerX = baseX + sway;
-
-                      // --- 2. CURTAIN SHAPE ---
-                      // Unique curve for each based on index
-                      float curve = 0.2 + sin(uv.x * 2.0 * (1.0/sizeMult) + t + i * 10.0) * (0.1 * sizeMult);
-                      curve += noise(vec2(uv.x * 8.0, t * 2.0)) * 0.04;
-
-                      // --- 3. DISTANCE & GLOW ---
-                      float dist = uv.y - curve;
-
-                      if(dist > 0.0) {
-                          float rays = noise(vec2(uv.x * 12.0, uv.y * 1.5 - t));
-                          rays = pow(rays, 1.5);
-
-                          // Core and Beam intensity scaled by sizeMult
-                          float core = 0.04 / (dist + 0.01);
-                          float beam = (0.08 / (dist + 0.01)) * rays;
-
-                          float totalGlow = core + beam;
-
-                          // Taller curtains decay slower
-                          totalGlow *= exp(-dist * (0.15 / sizeMult));
-
-                          // Width Mask: Wider for the big one
-                          float widthBound = 0.6 * sizeMult;
-                          float widthMask = smoothstep(widthBound, 0.0, abs(uv.x - centerX));
-                          totalGlow *= widthMask;
-
-                          // Intro Animation
-                          float drawMask = smoothstep(0.0, 1.0, (uDraw * 2.0 - dist));
-                          totalGlow *= drawMask;
-
-                          // KP Intensity
-                          totalGlow *= (uKp / 9.0) * 1.0 + 0.5;
-
-                          // --- 4. COLORS ---
-                          vec3 cStart, cMid1, cMid2, cEnd;
-
-                          if (i == 0.0) {
-                              // SMALL CURTAIN (Left): Cooler, Deep Blues/Purples
-                              cStart = vec3(0.0, 0.3, 1.0);
-                              cMid1 = vec3(0.5, 0.0, 1.0);
-                              cMid2 = vec3(0.0, 0.7, 1.0);
-                              cEnd = vec3(0.0, 0.1, 0.6);
-                          } else {
-                              // BIG CURTAIN (Right): Bright, Vibrant Cyan/Magenta/Green mix
-                              cStart = vec3(0.1, 1.0, 0.6); // Bright Teal start
-                              cMid1 = vec3(0.0, 0.5, 1.0);  // Azure
-                              cMid2 = vec3(1.0, 0.2, 0.8);  // Magenta
-                              cEnd = vec3(0.5, 0.0, 1.0);   // Purple
-                          }
-
-                          // Gradient mapping
-                          float h = dist * (0.4 / sizeMult); // Stretch gradient for bigger curtain
-                          vec3 col = mix(cStart, cMid1, smoothstep(0.0, 0.4, h));
-                          col = mix(col, cMid2, smoothstep(0.4, 0.8, h));
-                          col = mix(col, cEnd, smoothstep(0.8, 1.2, h));
-
-                          col = hueShift(col, uHueShift);
-
-                          // Accumulate
-                          finalColor += col * totalGlow * 0.4;
-                      }
-                  }
-
-                  // Starfield
-                  float starNoise = noise(uv * 100.0 + t * 0.05);
-                  if (starNoise > 0.98) {
-                      finalColor += vec3(1.0) * (0.2 + sin(t * 5.0) * 0.1);
-                  }
-
-                  // Tone Mapping
-                  finalColor = finalColor / (finalColor + 1.2);
-                  finalColor *= 1.2;
-
-                  gl_FragColor = vec4(finalColor, 1.0);
-              }
-          `
-
-  const geometry = new THREE.PlaneGeometry(2, 2)
-  const uniforms = {
-    uTime: { value: 0 },
-    uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-    uDraw: { value: 0.0 },
-    uKp: { value: 9.0 },
-    uHueShift: { value: 0.0 },
-  }
-  const material = new THREE.ShaderMaterial({
-    vertexShader,
-    fragmentShader,
-    uniforms,
-    depthWrite: false,
-    depthTest: false,
-  })
-  const mesh = new THREE.Mesh(geometry, material)
-  scene.add(mesh)
-
-  const clock = new THREE.Clock()
-
-  function animate() {
-    requestAnimationFrame(animate)
-    uniforms.uTime.value = clock.getElapsedTime()
-    uniforms.uHueShift.value = (uniforms.uTime.value * 10.0) % 360.0
-
-    if (uniforms.uDraw.value < 1.5) {
-      uniforms.uDraw.value += 0.008
-    }
-    renderer.render(scene, camera)
-  }
-
-  animate()
-
-  window.addEventListener('resize', () => {
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    uniforms.uResolution.value.set(window.innerWidth, window.innerHeight)
-  })
-}
+// Slowly cycle the whole aurora around the color wheel (one turn every ~36s).
+// Range starts at 1 so the shift never hits 0, which would recompile the filter.
+const hueCycle = { type: 'auto-animate', mode: 'loop', outputMin: 1, outputMax: 361, speed: 1 / 36 } as const
 </script>
 
 <template>
   <div>
-    <div id="canvas-container" />
+    <div
+      id="canvas-container"
+      :class="{ ready, unavailable }"
+    >
+      <ClientOnly>
+        <Shader
+          class="shader"
+          disable-telemetry
+          @ready="ready = true"
+          @unavailable="unavailable = true"
+        >
+          <HueShift :shift="hueCycle">
+            <!-- Small curtain (left): cool blues and purples -->
+            <Aurora
+              color-a="#7f00ff"
+              color-b="#004dff"
+              color-c="#00b3ff"
+              :center="{ x: 0.22, y: 0 }"
+              :height="90"
+              :intensity="70"
+              :curtain-count="3"
+              :speed="3"
+              :waviness="60"
+              :ray-density="35"
+              :seed="3"
+            />
+            <!-- Big curtain (right): teal, azure and magenta -->
+            <Aurora
+              color-a="#ff33cc"
+              color-b="#1aff99"
+              color-c="#7f00ff"
+              blend-mode="linearDodge"
+              :center="{ x: 0.72, y: 0 }"
+              :height="140"
+              :intensity="85"
+              :curtain-count="4"
+              :speed="4"
+              :waviness="45"
+              :ray-density="25"
+              :seed="11"
+            />
+          </HueShift>
+          <!-- Starfield -->
+          <FloatingParticles
+            particle-color="#ffffff"
+            blend-mode="screen"
+            :count="350"
+            :particle-size="0.8"
+            :softness="0.3"
+            :speed="0.02"
+            :twinkle="1"
+            :opacity="0.6"
+          />
+        </Shader>
+      </ClientOnly>
+    </div>
     <div class="content">
       <div class="logo-container">
         <img
@@ -278,6 +121,22 @@ html {
   width: 100%;
   height: 100vh;
   z-index: 1;
+  opacity: 0;
+  transition: opacity 3s ease;
+}
+#canvas-container.ready {
+  opacity: 1;
+}
+/* No WebGPU: fall back to a static glow so the page isn't just black */
+#canvas-container.unavailable {
+  opacity: 1;
+  background:
+    radial-gradient(ellipse 60% 45% at 72% 100%, rgba(26, 255, 153, 0.25), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 22% 100%, rgba(80, 0, 255, 0.3), transparent 70%);
+}
+#canvas-container .shader {
+  width: 100%;
+  height: 100%;
 }
 .content {
   position: absolute;
