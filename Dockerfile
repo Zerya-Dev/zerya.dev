@@ -1,19 +1,29 @@
-FROM imbios/bun-node:1.3.10-current-alpine AS base
+ARG APP=company
+
+FROM node:26-alpine AS build
 WORKDIR /app
+ARG APP
 
-FROM base AS prerelease
-COPY package.json bun.lock ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY apps/company/package.json ./apps/company/
+COPY apps/foundation/package.json ./apps/foundation/
+COPY packages/base/package.json ./packages/base/
 
-RUN bun install --frozen-lockfile --ignore-scripts
+RUN npm install -g pnpm@12.11.2 && pnpm install --frozen-lockfile --ignore-scripts
 
 COPY . .
 
-RUN bun run build
+RUN pnpm --filter "@zerya/${APP}" run postinstall
+RUN pnpm --filter "@zerya/${APP}" run build
 
-FROM base AS release
-COPY --from=prerelease /app/node_modules node_modules
-COPY --from=prerelease /app/.output .output
-COPY --from=prerelease /app/package.json .
+FROM node:26-alpine AS runtime
+WORKDIR /app
+ARG APP
+
+ENV NODE_ENV=production
+ENV PORT=3000
+COPY --from=build /app/apps/${APP}/.output ./.output
+USER node
 
 EXPOSE 3000
 CMD ["node", ".output/server/index.mjs"]
