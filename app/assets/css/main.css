@@ -1,8 +1,70 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
 
-@source "../../../content/**/*";
+@theme static {
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
 
-@theme {
-  --font-sans: 'Public Sans', sans-serif;
+  --color-paper: #f5f3ec;
+  --color-ink: #0f110f;
+  --color-line: #dad7ce;
+  /* Night sky behind the aurora scene, matches the land silhouette */
+  --color-night: #0a0a0a;
+
+  --color-aurora: #5cf0a0;
+  --color-aurora-light: #d9ffeb;
+  --color-ember: #f1e15b;
+
+  --color-brand-50: #effef6;
+  --color-brand-100: #d9ffeb;
+  --color-brand-200: #b5fbd6;
+  --color-brand-300: #8ef6be;
+  --color-brand-400: #5cf0a0;
+  --color-brand-500: #5cf0a0;
+  --color-brand-600: #2fd47f;
+  --color-brand-700: #1fa865;
+  --color-brand-800: #1a8352;
+  --color-brand-900: #186b45;
+  --color-brand-950: #0e3b34;
+}
+
+:root {
+  --ui-bg: var(--color-ink);
+  --ui-text: var(--color-paper);
+  --ui-text-muted: rgb(245 243 236 / 65%);
+  --ui-text-dimmed: rgb(245 243 236 / 55%);
+  --ui-text-inverted: var(--color-ink);
+  --ui-text-highlighted: var(--color-paper);
+  --ui-border: rgb(245 243 236 / 15%);
+  --ui-radius: 0;
+}
+
+@layer base {
+  body {
+    @apply bg-night font-sans text-paper;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* Riso halftone mask. `--dot` is the dot radius as a share of the cell, 0.72 and up reads as solid. */
+  .halftone {
+    --cell: max(3px, 0.07em);
+    --dot-r: calc(var(--dot, 0.72) * var(--cell));
+
+    -webkit-mask-image: radial-gradient(circle, #000 var(--dot-r), transparent calc(var(--dot-r) + 0.75px));
+    mask-image: radial-gradient(circle, #000 var(--dot-r), transparent calc(var(--dot-r) + 0.75px));
+    -webkit-mask-size: var(--cell) var(--cell);
+    mask-size: var(--cell) var(--cell);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
