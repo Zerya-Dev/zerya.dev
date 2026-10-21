@@ -5,7 +5,11 @@ export default defineNuxtConfig({
   devServer: {
     port: 3001,
   },
-  compatibilityDate: '2026-03-16',
+  compatibilityDate: '2026-10-14',
+
+  future: {
+    compatibilityVersion: 5,
+  },
   typescript: {
     typeCheck: true,
   },

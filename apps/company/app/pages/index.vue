@@ -1,3 +1,4 @@
+<!-- eslint-disable-next-line vue/block-lang -->
 <script setup>
 import logoUrl from '#layers/shared/app/assets/logo.svg'
 
@@ -244,7 +245,7 @@ if (import.meta.client) {
         <a
           href="https://github.com/Zerya-Dev"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
         >
           <svg
             viewBox="0 0 24 24"

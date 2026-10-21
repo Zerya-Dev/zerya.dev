@@ -2,37 +2,23 @@
   "name": "zerya-websites",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@12.11.2",
-  "engines": {
-    "node": ">=26.0.0"
-  },
+  "packageManager": "pnpm@12.12.1",
   "scripts": {
-    "build": "pnpm --recursive --workspace-concurrency=1 --filter './apps/*' run build",
-    "company:build": "pnpm --filter '@zerya/company' run build",
-    "company:dev": "pnpm --filter '@zerya/company' run dev",
-    "company:preview": "pnpm --filter '@zerya/company' run preview",
-    "company:typecheck": "pnpm --filter '@zerya/company' run typecheck",
-    "dev": "pnpm --recursive --parallel --filter './apps/*' run dev",
-    "foundation:build": "pnpm --filter '@zerya/foundation' run build",
-    "foundation:dev": "pnpm --filter '@zerya/foundation' run dev",
-    "foundation:preview": "pnpm --filter '@zerya/foundation' run preview",
-    "foundation:typecheck": "pnpm --filter '@zerya/foundation' run typecheck",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "preview": "pnpm --recursive --parallel --filter './apps/*' run preview",
-    "typecheck": "pnpm --recursive --workspace-concurrency=1 --filter './apps/*' run typecheck",
-    "test": "pnpm --recursive --parallel --if-present --filter './apps/*' run test",
-    "test:watch": "pnpm --recursive --parallel --if-present --filter './apps/*' run test:watch",
-    "test:nuxt": "pnpm --recursive --parallel --if-present --filter './apps/*' run test:nuxt",
-    "test:e2e": "pnpm --recursive --parallel --if-present --filter './apps/*' run test:e2e",
-    "test:e2e:ui": "pnpm --recursive --parallel --if-present --filter './apps/*' run test:e2e:ui",
-    "prepare": "husky"
+    "build": "vp run -r --concurrency-limit 1 build",
+    "dev": "vp run -r --parallel dev",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "prepare": "vp config",
+    "preview": "vp run -r --parallel preview",
+    "ready": "vp run lint && vp run typecheck && vp run test && vp run build",
+    "test": "vp run -r test",
+    "typecheck": "vp run -r --concurrency-limit 1 typecheck"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^7.7.2",
-    "eslint": "^10.0.3",
-    "eslint-plugin-format": "^2.0.1",
-    "husky": "^9.1.7",
-    "typescript": "^5.9.3"
+    "@nustackjs/lint": "catalog:toolchain",
+    "eslint": "catalog:toolchain",
+    "typescript": "catalog:toolchain",
+    "vite": "catalog:toolchain",
+    "vite-plus": "catalog:toolchain"
   }
 }
