@@ -4,6 +4,7 @@ export default defineNuxtConfig({
     '../../packages/base',
   ],
   modules: [
+    '@nustackjs/lint',
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
@@ -30,7 +31,11 @@ export default defineNuxtConfig({
     typedPages: true,
     sharedPrerenderData: true,
   },
-  compatibilityDate: '2026-03-16',
+  compatibilityDate: '2026-10-14',
+
+  future: {
+    compatibilityVersion: 5,
+  },
 
   nitro: {
     prerender: {

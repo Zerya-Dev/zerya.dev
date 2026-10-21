@@ -1,5 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import logoUrl from '#layers/base/app/assets/logo.svg'
+
+// three.js is loaded from the CDN script below, so it's only available as a global
+declare const THREE: typeof import('three')
 
 useHead({
   script: [{ src: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', defer: true }],
@@ -10,7 +13,7 @@ useSeoMeta({
 })
 
 if (import.meta.client) {
-  const container = document.getElementById('canvas-container')
+  const container = document.getElementById('canvas-container')!
   const scene = new THREE.Scene()
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false })
@@ -244,7 +247,7 @@ if (import.meta.client) {
         <a
           href="https://github.com/Zerya-Dev"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
         >
           <svg
             viewBox="0 0 24 24"
