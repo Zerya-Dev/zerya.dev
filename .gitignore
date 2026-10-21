@@ -7,26 +7,32 @@
 dist
 
 # Node dependencies
-node_modules
+**/node_modules
 
 # Logs
 logs
-*.log
+**/*.log
 
-# Misc
-.DS_Store
-.fleet
+# Editors
 .idea
+.vscode
+.zed
+.fleet
+.history
 
 # Local env files
 .env
 .env.*
 !.env.example
 
-#VSC
-.history
-mise.toml
+# Vite+
+.vite-hooks
+.vitest
 
 # Playwright
 playwright-report/
 test-results/
+
+# Misc
+**/.DS_Store
+mise.toml

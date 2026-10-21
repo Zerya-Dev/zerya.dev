@@ -1,0 +1,20 @@
+{
+  "name": "@zerya/foundation",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "preview": "nuxt preview --port 3001",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "nuxt": "catalog:runtime",
+    "vue-router": "catalog:runtime"
+  },
+  "devDependencies": {
+    "typescript": "catalog:toolchain",
+    "vue-tsc": "catalog:toolchain"
+  }
+}
