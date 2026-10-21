@@ -1,6 +1,6 @@
 # Zerya websites
 
-This pnpm workspace contains two Nuxt applications and a shared Nuxt layer:
+This Vite+ (pnpm) workspace contains two Nuxt applications and a shared Nuxt layer:
 
 ```text
 apps/
@@ -15,7 +15,7 @@ packages/
 Make sure to install the dependencies:
 
 ```bash
-pnpm install
+vp install
 ```
 
 ## Development Server
@@ -23,14 +23,14 @@ pnpm install
 Start both websites on `http://localhost:3000` and `http://localhost:3001`:
 
 ```bash
-pnpm dev
+vp run dev
 ```
 
 Start either website independently:
 
 ```bash
-pnpm company:dev
-pnpm foundation:dev
+vp run @zerya/company#dev
+vp run @zerya/foundation#dev
 ```
 
 ## Production
@@ -38,14 +38,16 @@ pnpm foundation:dev
 Build both applications for production:
 
 ```bash
-pnpm build
+vp run build
 ```
 
 Build one application independently:
 
 ```bash
-pnpm company:build
-pnpm foundation:build
+vp run @zerya/company#build
+vp run @zerya/foundation#build
 ```
+
+Any other package script runs the same way, e.g. `vp run @zerya/company#test:e2e`.
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
