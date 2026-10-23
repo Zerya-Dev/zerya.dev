@@ -4,6 +4,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        NUXT_PUBLIC_TURNSTILE_SITE_KEY: ${NUXT_PUBLIC_TURNSTILE_SITE_KEY:?Set the Turnstile site key before building}
+    # Optional NUXT_CONTACT_* overrides come from .env; unset ones keep the nuxt.config defaults.
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      NUXT_RESEND_API_KEY: ${NUXT_RESEND_API_KEY:?Set the Resend API key}
+      NUXT_TURNSTILE_SECRET_KEY: ${NUXT_TURNSTILE_SECRET_KEY:?Set the Turnstile secret key}
     restart: on-failure
     ports:
       - '3000:3000'

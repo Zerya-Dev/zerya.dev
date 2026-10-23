@@ -8,6 +8,7 @@ RUN bun install --frozen-lockfile --ignore-scripts
 
 COPY . .
 
+ARG NUXT_PUBLIC_TURNSTILE_SITE_KEY
 RUN bun run build
 
 FROM base AS release
