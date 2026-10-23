@@ -64,6 +64,12 @@ export default defineNuxtConfig({
     },
   },
   typescript: { typeCheck: true },
+  vite: {
+    build: {
+      // The type check above is most of the build time, so Rolldown's slow plugin warning only reports it
+      rolldownOptions: { checks: { bundlerTimings: false } },
+    },
+  },
 
   // Module configuration
 
