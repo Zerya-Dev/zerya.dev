@@ -30,3 +30,6 @@ mise.toml
 # Playwright
 playwright-report/
 test-results/
+
+# awwwards-mcp cache, index and skill memory
+.awwwards-mcp/
