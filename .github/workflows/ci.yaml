@@ -21,3 +21,12 @@ jobs:
 
       - name: Build frontend
         run: bun run build
+
+      - name: Run unit tests
+        run: bun run test
+
+      - name: Install Chromium
+        run: bunx playwright install --with-deps chromium
+
+      - name: Run browser tests
+        run: bun run test:e2e
