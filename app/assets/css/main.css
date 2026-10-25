@@ -1,8 +1,118 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
 
-@source "../../../content/**/*";
+@theme static {
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
 
-@theme {
-  --font-sans: 'Public Sans', sans-serif;
+  --color-paper: #f5f3ec;
+  --color-paper-raised: #fbfaf6;
+  --color-ink: #0f110f;
+  --color-graphite: #24272a;
+  --color-dimmed: #6e726e;
+  --color-line: #dad7ce;
+  --color-forest: #0e3b34;
+  /* Night sky of the aurora print, matches the land silhouette */
+  --color-night: #0a0a0a;
+  /* Riso Midnight, the stone ink of the ruins print */
+  --color-stone: #435060;
+
+  --color-aurora: #5cf0a0;
+  --color-aurora-light: #d9ffeb;
+  --color-celadon: #b5e3b0;
+  --color-ember: #f1e15b;
+
+  --color-brand-50: #effef6;
+  --color-brand-100: #d9ffeb;
+  --color-brand-200: #b5fbd6;
+  --color-brand-300: #8ef6be;
+  --color-brand-400: #5cf0a0;
+  --color-brand-500: #5cf0a0;
+  --color-brand-600: #2fd47f;
+  --color-brand-700: #1fa865;
+  --color-brand-800: #1a8352;
+  --color-brand-900: #186b45;
+  --color-brand-950: #0e3b34;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --ui-bg: var(--color-ink);
+  --ui-text: var(--color-paper);
+  --ui-text-muted: rgb(245 243 236 / 65%);
+  --ui-text-dimmed: rgb(245 243 236 / 55%);
+  --ui-text-inverted: var(--color-ink);
+  --ui-text-highlighted: var(--color-paper);
+  --ui-border: rgb(245 243 236 / 15%);
+  --ui-radius: 0;
+}
+
+@layer base {
+  /* The scroll axis replaces the scrollbar */
+  html {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    @apply bg-night font-sans text-paper;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* Riso halftone mask. `--dot` is the dot radius as a share of the cell, 0.72 and up reads as solid. */
+  .halftone {
+    --cell: max(3px, 0.07em);
+    --dot-r: calc(var(--dot, 0.72) * var(--cell));
+
+    -webkit-mask-image: radial-gradient(circle, #000 var(--dot-r), transparent calc(var(--dot-r) + 0.75px));
+    mask-image: radial-gradient(circle, #000 var(--dot-r), transparent calc(var(--dot-r) + 0.75px));
+    -webkit-mask-size: var(--cell) var(--cell);
+    mask-size: var(--cell) var(--cell);
+  }
+
+  /* A dressed stone lit from the upper left, as in the ruins print: the face is bare page inside a
+     carved line, the shade sides a chamfered band in the print's dot screen */
+  .ashlar {
+    position: relative;
+    background: var(--color-paper);
+    outline: 1px solid color-mix(in srgb, var(--color-stone) 70%, transparent);
+    outline-offset: -1px;
+  }
+
+  .ashlar::after {
+    --pitch: 6.4px;
+    --dot: radial-gradient(circle, var(--color-stone) 1.1px, transparent 1.6px);
+
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      var(--dot) 0 0 / var(--pitch) var(--pitch),
+      var(--dot) calc(var(--pitch) / 2) calc(var(--pitch) / 2) / var(--pitch) var(--pitch);
+    clip-path: polygon(
+      100% 0,
+      100% 100%,
+      0 100%,
+      12px calc(100% - 12px),
+      calc(100% - 12px) calc(100% - 12px),
+      calc(100% - 12px) 12px
+    );
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }

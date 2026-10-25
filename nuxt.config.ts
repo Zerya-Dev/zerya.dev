@@ -1,3 +1,5 @@
+import { CONTACT_EMAIL, SITE_URL, SOCIAL_LINKS } from './shared/utils/site'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // Keep Nitro 2's generated types outside node_modules, alongside the build.
@@ -10,19 +12,31 @@ export default defineNuxtConfig({
     '@compodium/nuxt',
     '@vueuse/nuxt',
     '@nuxtjs/seo',
-    '@nuxt/content',
     '@nuxtjs/turnstile',
   ],
   devtools: { enabled: true },
-  css: ['~/assets/css/main.css'],
-
-  content: {
-    experimental: { nativeSqlite: true },
+  site: {
+    url: SITE_URL,
+    name: 'Zerya',
+    description: 'Zerya projektuje i buduje rozwiązania, które usuwają konkretny problem Twojej firmy. Porozmawiajmy o Twoim projekcie.',
+    defaultLocale: 'pl',
   },
-
-  mdc: {
-    highlight: {
-      noApiRoute: false,
+  app: {
+    head: {
+      meta: [{ name: 'theme-color', content: '#0a0a0a' }],
+    },
+  },
+  css: ['~/assets/css/main.css'],
+  // `global` exposes the fonts to the OG image renderer
+  fonts: {
+    families: [
+      { name: 'Outfit', weights: [400, 500, 600], global: true },
+    ],
+  },
+  ui: {
+    colorMode: false,
+    experimental: {
+      componentDetection: true,
     },
   },
   runtimeConfig: {
@@ -59,11 +73,28 @@ export default defineNuxtConfig({
       standalone: false,
     },
   },
+  sitemap: {
+    zeroRuntime: true,
+  },
+  ogImage: {
+    zeroRuntime: true,
+    defaults: { height: 630 },
+  },
   linkChecker: {
     runOnBuild: false,
   },
   // https://nuxtseo.com/docs/schema-org/getting-started/introduction
   schemaOrg: {
-    enabled: false,
+    identity: {
+      type: 'Organization',
+      name: 'Zerya',
+      url: SITE_URL,
+      email: CONTACT_EMAIL,
+      founder: [
+        { '@type': 'Person', 'name': 'Wiktor Popiołek', 'alternateName': 'wikipop' },
+        { '@type': 'Person', 'name': 'Norbert Szeremet', 'alternateName': 'Norbiros' },
+      ],
+      sameAs: Object.values(SOCIAL_LINKS),
+    },
   },
 })
