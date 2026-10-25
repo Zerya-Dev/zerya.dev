@@ -1,5 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  // Keep Nitro 2's generated types outside node_modules, alongside the build.
+  buildDir: '.nuxt',
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
@@ -9,6 +11,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxtjs/seo',
     '@nuxt/content',
+    '@nuxtjs/turnstile',
   ],
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
@@ -20,6 +23,16 @@ export default defineNuxtConfig({
   mdc: {
     highlight: {
       noApiRoute: false,
+    },
+  },
+  runtimeConfig: {
+    resendApiKey: '',
+    contact: {
+      to: 'contact+{tag}@zerya.dev',
+      from: 'Zerya Web <formularz@zerya.dev>',
+      allowedHostnames: ['zerya.dev', 'www.zerya.dev'],
+      // Exact socket IPs of proxies that overwrite X-Forwarded-For with the client's IP
+      trustedProxyIPs: [] as string[],
     },
   },
   experimental: {
