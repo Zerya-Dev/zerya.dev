@@ -1,0 +1,8 @@
+{
+  "name": "@zerya/website-base",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "nuxt": "catalog:runtime"
+  }
+}

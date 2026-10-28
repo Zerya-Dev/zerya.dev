@@ -1,0 +1,48 @@
+{
+  "name": "@zerya/company",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "preview": "nuxt preview --port 3000",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest --watch",
+    "test:nuxt": "vitest --project nuxt",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "dependencies": {
+    "@nuxt/content": "catalog:runtime",
+    "@nuxt/image": "catalog:runtime",
+    "@nuxt/ui": "catalog:runtime",
+    "@nuxtjs/i18n": "catalog:runtime",
+    "@nuxtjs/seo": "catalog:runtime",
+    "@vueuse/nuxt": "catalog:runtime",
+    "nuxt": "catalog:runtime",
+    "nuxt-og-image": "catalog:runtime",
+    "nuxt-studio": "catalog:runtime",
+    "vue-router": "catalog:runtime"
+  },
+  "devDependencies": {
+    "@compodium/nuxt": "catalog:toolchain",
+    "@iconify-json/lucide": "catalog:toolchain",
+    "@iconify-json/simple-icons": "catalog:toolchain",
+    "@nustackjs/lint": "catalog:toolchain",
+    "@nuxt/devtools": "catalog:toolchain",
+    "@nuxt/test-utils": "catalog:test",
+    "@playwright/test": "catalog:test",
+    "@vue/test-utils": "catalog:test",
+    "happy-dom": "catalog:test",
+    "playwright-core": "catalog:test",
+    "tailwindcss": "catalog:toolchain",
+    "typescript": "catalog:toolchain",
+    "vite": "catalog:toolchain",
+    "vite-plus": "catalog:toolchain",
+    "vitest": "catalog:test",
+    "vitest-fail-on-console": "catalog:test",
+    "vue-tsc": "catalog:toolchain"
+  }
+}
