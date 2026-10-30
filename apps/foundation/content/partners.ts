@@ -28,6 +28,13 @@ export const FEATURED_PARTNERS: Partner[] = [
     logo: '/img/content/partners/ambasada-spolecznosci.webp',
     logoAlt: 'Logo Ambasada Społeczności',
   },
+  {
+    name: 'Miasto Kraków',
+    tagline: 'Partner publiczny',
+    url: 'https://www.krakow.pl/',
+    logo: '/img/content/partners/krakow.svg',
+    logoAlt: 'Logo Kraków.pl',
+  },
 ]
 
 export const SUPPORTING_PARTNERS: Partner[] = [

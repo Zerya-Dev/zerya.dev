@@ -28,4 +28,11 @@ export const FOOTER = {
     { label: 'Standardy ochrony małoletnich', to: '/dokumenty#standardy-ochrony-maloletnich' },
     { label: 'Polityka prywatności', to: '/dokumenty#polityka-prywatnosci' },
   ] satisfies Link[],
+  cityLinks: {
+    logo: { href: 'https://www.krakow.pl/', src: '/img/content/partners/krakow.svg', alt: 'Kraków.pl — Miejska Platforma Internetowa Magiczny Kraków' },
+    links: [
+      { label: 'ngo.krakow.pl', to: 'https://ngo.krakow.pl/' },
+      { label: 'dlabiznesu.krakow.pl', to: 'https://www.dlabiznesu.krakow.pl/' },
+    ] satisfies Link[],
+  },
 }

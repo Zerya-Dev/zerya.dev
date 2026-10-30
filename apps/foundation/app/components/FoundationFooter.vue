@@ -32,6 +32,15 @@ import { FOOTER, SOCIAL_LINKS } from '~~/content/settings'
       </UContainer>
     </template>
 
+    <div class="flex flex-wrap items-center gap-4">
+      <a :href="FOOTER.cityLinks.logo.href" target="_blank" rel="noopener noreferrer" class="rounded bg-white p-2">
+        <img :src="FOOTER.cityLinks.logo.src" :alt="FOOTER.cityLinks.logo.alt" class="h-8 w-auto">
+      </a>
+      <ULink v-for="link in FOOTER.cityLinks.links" :key="link.to" :to="link.to" class="transition-colors hover:text-zerya-400" target="_blank" rel="noopener noreferrer">
+        {{ link.label }}
+        <span class="sr-only">(otwiera się w nowej karcie)</span>
+      </ULink>
+    </div>
     <p>{{ FOOTER.organization }}</p>
     <div class="flex flex-wrap gap-4">
       <NuxtLink v-for="link in FOOTER.legalLinks" :key="link.to" class="transition-colors hover:text-zerya-400" :to="link.to">
