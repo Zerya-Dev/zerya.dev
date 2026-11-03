@@ -21,6 +21,7 @@ export const LANDING_TEAM: TeamMember[] = [
   {
     name: 'Jakub Starzyk',
     role: 'Prezes Zarządu',
+    img: '/img/content/people/jakub-starzyk.jpg',
     socials: {
       linkedin: 'https://www.linkedin.com/in/jakub-starzyk-8a37bb331/',
       email: 'jakub.starzyk@foundation.zerya.dev',
