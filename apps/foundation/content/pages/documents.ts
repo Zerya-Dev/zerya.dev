@@ -33,13 +33,13 @@ export const DOCUMENTS: FoundationDocument[] = [
     title: 'Standardy ochrony małoletnich',
     description: 'Większość uczestników naszych wydarzeń jest niepełnoletnia. Dokument opisuje zasady pracy z małoletnimi, procedury reagowania i załączniki.',
     file: '/docs/standardy-ochrony-maloletnich.pdf',
-    pages: 36,
+    pages: 27,
   },
   {
     id: 'polityka-prywatnosci',
     title: 'Polityka prywatności',
     description: 'Jak przetwarzamy dane osób, które kontaktują się z fundacją: mailowo, telefonicznie i przez media społecznościowe.',
     file: '/docs/polityka-prywatnosci.pdf',
-    pages: 2,
+    pages: 4,
   },
 ]
