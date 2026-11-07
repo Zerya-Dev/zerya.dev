@@ -2,7 +2,7 @@
   "name": "zerya-websites",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@12.12.1",
+  "packageManager": "pnpm@12.18.0",
   "scripts": {
     "build": "vp run -r build",
     "dev": "vp run -r --parallel dev",
