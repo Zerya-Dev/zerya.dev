@@ -5,10 +5,8 @@ import {
   HOME_MISSION,
   HOME_PARTNERS,
   HOME_SEO,
-  HOME_TEAM,
 } from '~~/content/pages/home'
 import { FEATURED_PARTNERS, SUPPORTING_PARTNERS } from '~~/content/partners'
-import { LANDING_TEAM } from '~~/content/team'
 
 useHead({ titleTemplate: null })
 const [primaryLink, secondaryLink] = HOME_HERO.links
@@ -118,30 +116,6 @@ useSeoMeta({
             loading="lazy"
           />
         </a>
-      </div>
-    </PageSection>
-
-    <PageSection color="bg-white" label="team-title">
-      <div class="items-end justify-between gap-8 md:flex">
-        <SectionHeader :label="HOME_TEAM.label" :title="HOME_TEAM.title" title-id="team-title" />
-        <NuxtLink class="mb-8 inline-block text-sm font-extrabold text-zerya-700 md:mb-14" :to="HOME_TEAM.link.to">
-          {{ HOME_TEAM.link.label }} <UIcon name="i-lucide-arrow-right" class="size-4 align-text-bottom" aria-hidden="true" />
-        </NuxtLink>
-      </div>
-      <div class="flex flex-col gap-4 md:flex-row">
-        <UCard v-for="person in LANDING_TEAM" :key="person.role" class="group min-w-0 overflow-hidden rounded-md bg-canvas md:flex-1" :ui="{ body: 'flex p-0 sm:p-0 md:flex-col' }">
-          <div class="w-1/3 shrink-0 md:w-full">
-            <ImagePlaceholder :label="`Portret — ${person.name}`" tone="mint" class="h-36 transition duration-300 group-hover:scale-105 md:h-96" />
-          </div>
-          <div class="min-w-0 flex-1 self-center p-6 md:w-full md:p-8">
-            <h3 class="m-0 text-base font-bold">
-              {{ person.name }}
-            </h3>
-            <p class="mt-1 text-xs text-slate-500 lowercase">
-              {{ person.role }}
-            </p>
-          </div>
-        </UCard>
       </div>
     </PageSection>
 

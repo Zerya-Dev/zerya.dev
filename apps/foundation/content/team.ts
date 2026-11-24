@@ -35,7 +35,6 @@ export const LANDING_TEAM: TeamMember[] = [
       email: 'oskar.szeremet@foundation.zerya.dev',
     },
   },
-  { name: 'Imię Nazwisko', role: 'Marketing' },
 ]
 
 export const TEAM_MEMBERS: TeamMember[] = [
