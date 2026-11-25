@@ -59,6 +59,6 @@ catalogs:
     # `vue-tsc` needs the JavaScript TypeScript API, which TypeScript 7 does not ship yet.
     typescript: ^6.0.3
     # Keep Vite Plus and its core on the same version.
-    vite: npm:@voidzero-dev/vite-plus-core@1.1.0
+    vite: npm:@voidzero-dev/vite-plus-core@8.3.8001
     vite-plus: 1.1.0
     vue-tsc: ^3.3.13
