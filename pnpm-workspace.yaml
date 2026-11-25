@@ -57,7 +57,7 @@ catalogs:
     eslint: ^10.8.0
     tailwindcss: ^4.3.2
     # `vue-tsc` needs the JavaScript TypeScript API, which TypeScript 7 does not ship yet.
-    typescript: ^6.0.3
+    typescript: ^7.0.2
     # Keep Vite Plus and its core on the same version.
     vite: npm:@voidzero-dev/vite-plus-core@1.1.0
     vite-plus: 1.1.0
