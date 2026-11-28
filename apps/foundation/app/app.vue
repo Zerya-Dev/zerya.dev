@@ -11,8 +11,8 @@ useHead({
 
 useSchemaOrg([
   defineWebSite({
-    name: 'Zerya Foundation',
-    alternateName: ['Fundacja Zerya', 'Zerya'],
+    name: 'Fundacja Zerya',
+    alternateName: ['Zerya Foundation', 'Zerya'],
     inLanguage: 'pl-PL',
   }),
 ])
