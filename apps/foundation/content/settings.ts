@@ -20,9 +20,25 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { label: 'Discord', href: 'https://discord.gg/ASPqckzEd8', icon: 'i-simple-icons-discord' },
 ]
 
+export const ORGANIZATION = {
+  name: 'Fundacja Zerya',
+  alternateName: 'Zerya Foundation',
+  krs: '0001257372',
+  nip: '9452333696',
+  regon: '545354397',
+  address: {
+    streetAddress: 'ul. Janusza Meissnera 4/78',
+    postalCode: '31-457',
+    addressLocality: 'Kraków',
+    addressRegion: 'małopolskie',
+    addressCountry: 'PL',
+  },
+}
+
 export const FOOTER = {
   description: 'Społeczność, która rozwija się razem. Od młodych, dla młodych.',
-  organization: 'Fundacja Zerya · Zerya Foundation · KRS 0001257372 · NIP 9452333696 · REGON 545354397',
+  organization: `${ORGANIZATION.name} · ${ORGANIZATION.alternateName} · KRS ${ORGANIZATION.krs} · NIP ${ORGANIZATION.nip} · REGON ${ORGANIZATION.regon}`,
+  address: `${ORGANIZATION.address.streetAddress}, ${ORGANIZATION.address.postalCode} ${ORGANIZATION.address.addressLocality}`,
   legalLinks: [
     { label: 'Statut', to: '/dokumenty#statut' },
     { label: 'Standardy ochrony małoletnich', to: '/dokumenty#standardy-ochrony-maloletnich' },

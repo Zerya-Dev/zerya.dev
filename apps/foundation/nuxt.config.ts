@@ -1,5 +1,6 @@
 import { readdirSync } from 'node:fs'
 import { defineOrganization } from 'nuxt-schema-org/schema'
+import { ORGANIZATION } from './content/settings'
 
 const contentRoutes = [
   ['projects', 'projekty'],
@@ -86,40 +87,43 @@ export default defineNuxtConfig({
   // https://nuxtseo.com/docs/schema-org/getting-started/introduction
   schemaOrg: {
     identity: defineOrganization({
-      name: 'Zerya Foundation',
-      alternateName: 'Fundacja Zerya',
-      description: 'Fundacja Zerya jest organizacją non-profit zajmującą się organizacją wydarzeń i inicjatyw edukacyjnych w zakresie IT i technologii w formie rywalizacji i praktyki.',
-      url: 'https://foundation.zerya.dev',
-      logo: 'https://foundation.zerya.dev/img/logo.png',
+      '@type': ['Organization', 'NGO'],
+      'name': ORGANIZATION.name,
+      'alternateName': ORGANIZATION.alternateName,
+      'description': 'Fundacja Zerya jest organizacją non-profit zajmującą się organizacją wydarzeń i inicjatyw edukacyjnych w zakresie IT i technologii w formie rywalizacji i praktyki.',
+      'url': 'https://foundation.zerya.dev',
+      'logo': 'https://foundation.zerya.dev/img/logo.png',
 
-      email: 'kontakt@foundation.zerya.dev',
-      foundingDate: '2026-07-29',
-      numberOfEmployees: {
+      'email': 'kontakt@foundation.zerya.dev',
+      'foundingDate': '2026-07-29',
+      'numberOfEmployees': {
         '@type': 'QuantitativeValue',
         'minValue': 10,
         'maxValue': 25,
       },
 
-      legalAddress: {
-        addressCountry: 'PL',
-        addressLocality: 'Kraków',
-        addressRegion: 'Województwo małopolskie',
-        postalCode: '31-457',
-        streetAddress: 'ul. Janusza Meissnera 4/78',
-      },
-      companyRegistration: {
+      'address': ORGANIZATION.address,
+      'legalAddress': { '@type': 'PostalAddress', ...ORGANIZATION.address },
+      'taxID': ORGANIZATION.nip,
+      'identifier': [
+        { '@type': 'PropertyValue', 'propertyID': 'KRS', 'value': ORGANIZATION.krs },
+        { '@type': 'PropertyValue', 'propertyID': 'NIP', 'value': ORGANIZATION.nip },
+        { '@type': 'PropertyValue', 'propertyID': 'REGON', 'value': ORGANIZATION.regon },
+      ],
+      'companyRegistration': {
         auditDate: '2026-07-29',
-        certificationIdentification: '0001257372',
+        certificationIdentification: ORGANIZATION.krs,
         certificationStatus: 'active',
         datePublished: '2026-07-29',
         issuedBy: 'SĄD REJONOWY DLA KRAKOWA-ŚRÓDMIEŚCIA W KRAKOWIE, XI WYDZIAŁ GOSPODARCZY KRAJOWEGO REJESTRU SĄDOWEGO',
       },
 
-      sameAs: [
+      'sameAs': [
+        'https://www.facebook.com/people/Fundacja-Zerya/61573226541589/',
         'https://www.linkedin.com/company/zerya-foundation/',
         'https://www.instagram.com/fundacja.zerya/',
-        'https://www.facebook.com/people/Fundacja-Zerya/61573226541589/',
         'https://www.tiktok.com/@fundacja.zerya',
+        'https://hack4krak.pl',
       ],
     }),
   },
@@ -137,9 +141,9 @@ export default defineNuxtConfig({
   // https://nuxtseo.com/docs/site-config/guides/setting-site-config
   site: {
     url: 'https://foundation.zerya.dev',
-    name: 'Zerya Foundation',
-    alternateName: 'Fundacja Zerya',
-    description: 'Zerya Foundation jest organizacją non-profit zajmującą się organizacją wydarzeń i inicjatyw edukacyjnych w zakresie IT i technologii w formie rywalizacji i praktyki.',
+    name: ORGANIZATION.name,
+    alternateName: ORGANIZATION.alternateName,
+    description: 'Fundacja Zerya jest organizacją non-profit zajmującą się organizacją wydarzeń i inicjatyw edukacyjnych w zakresie IT i technologii w formie rywalizacji i praktyki.',
     defaultLocale: 'pl',
   },
   colorMode: {

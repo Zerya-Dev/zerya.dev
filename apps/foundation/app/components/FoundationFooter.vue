@@ -32,7 +32,12 @@ import { FOOTER, SOCIAL_LINKS } from '~~/content/settings'
       </UContainer>
     </template>
 
-    <p>{{ FOOTER.organization }}</p>
+    <div class="flex flex-col gap-1">
+      <p>{{ FOOTER.organization }}</p>
+      <address class="not-italic">
+        {{ FOOTER.address }}
+      </address>
+    </div>
     <div class="flex flex-wrap gap-4">
       <NuxtLink v-for="link in FOOTER.legalLinks" :key="link.to" class="transition-colors hover:text-zerya-400" :to="link.to">
         {{ link.label }}
